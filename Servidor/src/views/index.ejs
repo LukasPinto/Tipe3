@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <%- include ('partials/head.ejs') %>
+    <title>Veterinaria</title>
+</head>
+<body>
+    <%- include ('partials/navbar.ejs') %>
+        <main style="background: linear-gradient(to top, #50c9c3, #96deda);">
+            <div class="container-fluid pb-3 pe-0 ps-0 col-lg-4 pt-3">
+
+                <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
+                    <div class="carousel-indicators ">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active ">
+                            <img src="https://www.hogarmania.com/archivos/202102/animales-reducir-asma-ninos-3-668x400x80xX-1.jpg"
+                                class="img-fluid rounded" alt="imagen1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.hogarmania.com/archivos/202102/animales-reducir-asma-ninos-3-668x400x80xX-1.jpg"
+                                class="img-fluid rounded" alt="imagen2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://www.hogarmania.com/archivos/202102/animales-reducir-asma-ninos-3-668x400x80xX-1.jpg"
+                                class="img-fluid rounded" alt="imagen3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span class="material-icons " style="font-size: 150px;">
+                            favorite
+                        </span>
+
+                        <h2>Vacunas</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, veritatis.</p>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <span class="material-icons " style="font-size: 150px;">
+                            business
+                        </span>
+
+                        <h2>Operaciones</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, repellendus.</p>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <span class="material-icons " style="font-size: 150px;">
+                            medical_services
+                        </span>
+
+                        <h2>Diagnostico</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, aperiam!</p>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <span class="material-icons " style="font-size: 150px;">
+                            content_cut
+                        </span>
+                        <h2>Peluqueria</h2>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto, illo.</p>
+
+                    </div>
+                </div>
+
+                <hr class="featurette-divider">
+                <div class="d-flex flex-column bd-highlight mb-3 pb-3">
+                    <div class="p-2 bd-highlight text-center">
+                        <h1>Mira nuestro nuestro video</h1>
+                    </div>
+                    <div class="p-2 bd-highlight text-center"><iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/gnJ-CNby5ss" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe></div>
+
+                </div>
+
+
+
+
+            </div>
+            <%- include ('partials/footer.ejs') %>
+        </main>
+
+</body>
+
+</html>

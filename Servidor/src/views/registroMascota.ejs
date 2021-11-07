@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head.ejs') %>
+    <title>Veterinaria Registro mascota</title>
+</head>
+
+<body>
+    <%- include ('partials/navbar.ejs') %>
+        <main class="bg-info">
+
+
+            <div class="row justify-content-md-center pt-4 ">
+                <div class="col-lg-12 text-center">
+                    <h1>Datos usuario</h1>
+                </div>
+                <hr class="featurette-divider">
+                <div class="col-lg-4 justify-content-center ">
+                    
+                        <form action="/add/cliente" method="post" class="card-body bg-warning rounded">
+                            <div class="mb-3 form-group">
+                                <label for="primer-nombre" class="form-label"> Primer nombre</label>
+                                <input type="text"  name="pnombre"id="primer-nombre" placeholder="Primer nombre" class="form-control">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="primer-apellido" class="form-label"> Primer apellido</label>
+                                <input type="text" name="papellido" id="primer-apellido" placeholder="Primer apellido"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="rut" class="form-label"> Rut</label>
+                                <input type="number" name="rut" id="rut" placeholder="Rut, sin digito verificador"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="correo" class="form-label">Correo electronico</label>
+                                <input type="email" name="email" class="form-control" id="correo" placeholder="nombre@ejemplo.com">
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="clave" class="form-control" id="password" placeholder="Contraseña">
+                            </div>
+
+
+                                <input class="btn btn-info col" type="submit">
+                                    <span></span>
+                                    <span class="material-icons align-middle ">
+                                        save
+                                    </span></input>
+                          
+                        </form>
+                   
+
+
+                </div>
+
+            </div>
+            <hr class="featurette-divider">
+            <div class="row justify-content-md-center pt-4">
+                <div class="col-lg-12 text-center">
+                    <h1>Datos mascota</h1>
+                </div>
+
+                <hr class="featurette-divider">
+                <div class="col-lg-4 justify-content-center mb-3">
+                    <form action="/add/mascota" method="post" class="card-body bg-warning rounded">
+                        <div class="mb-3 form-group">
+                            <label for="nombre_mascota" class="form-label"> Nombre mascota</label>
+                            <input type="text"  name="nombre_mascota"id="nombre_mascota" placeholder="Nombre Mascota" class="form-control">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="especie" class="form-label"> Especie</label>
+                            <input type="text" name="especie" id="especie" placeholder="Especie"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="raza" class="form-label"> Raza</label>
+                            <input type="text" name="raza" id="rut" placeholder="raza del animal,"
+                                class="form-control">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="rut_cliente" class="form-label">Rut dueño</label>
+                            <input type="number" name="rut_cliente" class="form-control" id="rut_cliente" placeholder="rut del dueño de la mascota, sin digito verificador">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" name="edad" class="form-control" id="edad" placeholder="Edad del animal">
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label for="peso" class="form-label">Peso</label>
+                            <input type="number" name="peso" class="form-control" id="peso" placeholder="Peso del animal">
+                        </div>
+
+
+                            <input class="btn btn-info col" type="submit">
+                                <span></span>
+                                <span class="material-icons align-middle ">
+                                    save
+                                </span></input>
+                      
+                    </form>
+               
+                </div>
+            </div>
+            <%- include ('partials/footer.ejs') %>
+        </main>
+</body>
+</html>
