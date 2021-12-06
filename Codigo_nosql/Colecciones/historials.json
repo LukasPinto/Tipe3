@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "61ab2e0583538e65f740e4cc"
+  },
+  "observaciones": "",
+  "mascota": {
+    "$oid": "61ab2e0583538e65f740e4cb"
+  },
+  "fichas_consultas": [
+    {
+      "$oid": "61abe84dcc77c192e5a84997"
+    },
+    {
+      "$oid": "61abe8b319677743f44a83d4"
+    },
+    {
+      "$oid": "61abe8ee19677743f44a83db"
+    },
+    {
+      "$oid": "61abe9c019677743f44a83e0"
+    },
+    {
+      "$oid": "61abe9c719677743f44a83e7"
+    },
+    {
+      "$oid": "61abe9f419677743f44a83ee"
+    },
+    {
+      "$oid": "61abea1919677743f44a83f5"
+    },
+    {
+      "$oid": "61abea1c19677743f44a83fa"
+    },
+    {
+      "$oid": "61abea8f45e1f91df0d9a517"
+    },
+    {
+      "$oid": "61abeaba45e1f91df0d9a51c"
+    },
+    {
+      "$oid": "61abeac745e1f91df0d9a521"
+    }
+  ],
+  "enfermedades": [],
+  "__v": 0
+}]
