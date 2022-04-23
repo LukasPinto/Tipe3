@@ -1,10 +1,11 @@
+require('dotenv').config();
 const mysql=require('mysql');
 
 const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'veterinaria2',
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
 })
 
 conn.connect(function(err){
