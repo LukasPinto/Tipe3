@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const cors = require('cors');
 const { JsonWebTokenError } = require('jsonwebtoken');
-require('dotenv').config();
+require('dotenv').config()
 //configuracion
 app.set('port',process.env.PORT || process.env.PORT);
 app.set('views',path.join(__dirname,'views'));
