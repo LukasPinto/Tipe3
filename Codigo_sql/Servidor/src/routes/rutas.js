@@ -2,7 +2,7 @@ const express = require('express');
 const conn = require('../database'); //archivo de coneccion a la bd
 const router = express.Router();
 const jwt = require('jsonwebtoken')
-
+require('dotenv').config();
 const { verify } = require('../middlewares/Auth');
 const { application } = require('express');
 
@@ -20,7 +20,7 @@ router.post('/login', (req, respuesta) => {
                 id: res[0].id_empl_direccion || res[0].id_empl_municipal
             }
             console.log(res)
-            const token = jwt.sign(userForToken, 'admin', { expiresIn: "5h" })
+            const token = jwt.sign(userForToken, process.env.SIGN, { expiresIn: "5h" })
             respuesta.send({ correo: res[0].correo, id: res[0].id_empl_municipal || res[0].id_empl_direccion, token })
         } else {
             
@@ -29,7 +29,7 @@ router.post('/login', (req, respuesta) => {
     })
 })
 
-router.get('/direcciones', (req, respuesta) => {
+router.get('/direcciones', verify,(req, respuesta) => {
     conn.query(`select * FROM direccion_municipal`, (res, err) => {
         if (!err) {
             console.log(res)
@@ -42,7 +42,7 @@ router.get('/direcciones', (req, respuesta) => {
     })
 })
 
-router.get('/user/direccion', (req, respuesta) => {
+router.get('/user/direccion',verify, (req, respuesta) => {
     const id_direccion = req.query.id_direccion;
     console.log(id_direccion)
     conn.query(`select * from usuario_direccion where id_direccion = ?`, [id_direccion], (res, err) => {
@@ -59,7 +59,7 @@ router.get('/user/direccion', (req, respuesta) => {
 
 })
 
-router.get('/user/solicitud', (req, respuesta) => {
+router.get('/user/solicitud',verify, (req, respuesta) => {
     const id_solicitud = req.query.id_solicitud;
     conn.query(`SELECT Solicitud.id_solicitud,usuario_direccion.nombre FROM solicitud
     JOIN empl_solicitud join usuario_direccion ON Solicitud.id_solicitud=empl_solicitud.id_solicitud and 

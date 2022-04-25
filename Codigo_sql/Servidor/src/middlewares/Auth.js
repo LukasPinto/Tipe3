@@ -1,13 +1,14 @@
 
+require('dotenv').config();
 const jwt = require('jsonwebtoken')
-const verify = (req,res,next)=>{
 
+const verify = (req,res,next)=>{
     const authHeader= req.headers.authorization;
-   
+    console.log(authHeader)
     if(authHeader){
         const token= authHeader.split(" ")[1];
         //console.log(token)
-        jwt.verify(token,"admin",(err,user)=>{
+        jwt.verify(token,process.env.SIGN,(err,user)=>{
             if(err){
                 return res.json({error: err})
             }
