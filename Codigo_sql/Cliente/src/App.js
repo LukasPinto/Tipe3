@@ -92,13 +92,13 @@ useEffect(()=>{
 
         <Switch>
          
-          <Route exact path="/crearusuario" component={CrearUsuario}></Route>
+          <Route exact path="/crearusuario" component={CrearUsuario}/>
           <Route exact path="/" component={InicioSesion}></Route>
-          <Route exact path="/modificarusuario" component={ModificarUsuario}></Route>
-          <Route exact path="/listadodirecciones" component={ListadoDirecciones}></Route>
-          <Route exact path="/usuariosdireccion" component={BandejaDireccion}></Route>
-          <Route exact path="/login" component={InicioSesion}></Route>
-          <Route exact path="/vistageneral" component={VistaGeneral}></Route>
+          <Route exact path="/modificarusuario" component={ModificarUsuario}/>
+          <Route exact path="/listadodirecciones" component={ListadoDirecciones}/>
+          <Route exact path="/usuariosdireccion" component={BandejaDireccion}/>
+          <Route exact path="/login" component={InicioSesion}/>
+          <Route exact path="/vistageneral" component={VistaGeneral}/>
          
          
    
