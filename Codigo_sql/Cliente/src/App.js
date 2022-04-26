@@ -9,7 +9,7 @@ import CrearUsuario from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'
 import BandejaDireccion from './components/usuariosDireccion'
 import ListadoDirecciones from './components/listadoDirecciones'
-
+import VistaGeneral from './components/vistaAdmin'
 
 
 const App = () => {
@@ -98,7 +98,7 @@ useEffect(()=>{
           <Route exact path="/listadodirecciones" component={ListadoDirecciones}></Route>
           <Route exact path="/usuariosdireccion" component={BandejaDireccion}></Route>
           <Route exact path="/login" component={InicioSesion}></Route>
-
+          <Route exact path="/vistageneral" component={VistaGeneral}></Route>
          
          
    
