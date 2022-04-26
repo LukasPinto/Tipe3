@@ -96,7 +96,7 @@ useEffect(()=>{
           <Route exact path="/" component={InicioSesion}></Route>
           <Route exact path="/modificarusuario" component={ModificarUsuario}></Route>
           <Route exact path="/listadodirecciones" component={ListadoDirecciones}></Route>
-          <Route exact path="/bandejadireccion" component={BandejaDireccion}></Route>
+          <Route exact path="/usuariosdireccion" component={BandejaDireccion}></Route>
 
          
          
