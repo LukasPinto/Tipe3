@@ -3,9 +3,9 @@ import './App.css';
 import Axios from 'axios'
 import { Nav, Navbar,  DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-import InicioSesion from './components/Login';
+import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
-import Home from './components/inicio'
+import CrearUsuario from './components/crearCuenta'
 
 
 const App = () => {
@@ -88,12 +88,12 @@ useEffect(()=>{
 
         <Switch>
          
-          <Route exact path="/Inicio" component={InicioSesion}></Route>
+          <Route exact path="/crearusuario" component={CrearUsuario}></Route>
           <Route exact path="/" component={InicioSesion}></Route>
 
          
          
-          {!userState.estado ? (<Route exact path="/Login" component={InicioSesion}></Route>):(<Route exact path="/Login" component={Home}></Route>)}
+   
 
          
         </Switch>
