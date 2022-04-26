@@ -6,65 +6,65 @@ import loginService from '../services/login.service';*/
 import './css/login.css';
 //import React, { useRef } from 'react';
 export default function IncioSesion(props) {
-
-
   return (
-    <div className="Login">
-      <div className="row">
-        <div className="co1-sm-4 offset-4 mt-5">
-          <div className="card pt-5">
-            <div className="card-header text-center">
-              <h3>💻Iniciar</h3>
+    <div className="container justify-content-center ">
+
+      <div className="co1-sm-4 offset-4 mt-5 justify-content-center">
+        <div className="card pt-5 ">
+          <div className="card-header text-center">
+            <h3>💻Iniciar Usuario Municipal</h3>
+          </div>
+          <div className="card=body">
+            <div className="input-group mb-4 ">
+              <div className="input-group-prependc">
+                <span className="input-group-text" id="basic-addon1">
+                  📥
+                </span>
+              </div>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Correo@ejemplo.com"
+                aria-label="Username"
+                aria-describedby="basic-addon1 "
+
+              />
             </div>
-            <div className="card=body">
-              <div className="input-group mb-4">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="basic-addon1">
-                    📥
-                  </span>
-                </div>
-                <input
-                  type="Gmail"
-                  className="form-control"
-                  placeholder="Correo"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
 
-                />
+            <div className="input-group mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="basic-addon1">
+                  🔒
+                </span>
               </div>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Contraseña"
+                aria-label="Clave"
+                aria-describedby="basic-addon2"
 
-              <div className="input-group mb-4">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="basic-addon1">
-                    🔒
-                  </span>
-                </div>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Clave"
-                  aria-label="Clave"
-                  aria-describedby="basic-addon2"
+              />
+            </div>
+            <button
 
-                />
-              </div>
-              <button
-
-                className="btn btn-info btn-lg btn-lock "> Acceder </button>
+              className="btn btn-info btn-lg btn-lock "> Acceder </button>
 
 
-              <div className="card footer">
-                <span>Olvidaste tu contraseña?</span> <a href="https://"> Recuperar</a>
-              </div>
+            <div className="card footer">
+              <span>Olvidaste tu contraseña?</span> <a href="https://"> Recuperar</a>
             </div>
           </div>
-
         </div>
+
       </div>
+
     </div>
+
   )
 
 }
+
 
 /*const InicioSesion = () => {
 const history=useHistory()
