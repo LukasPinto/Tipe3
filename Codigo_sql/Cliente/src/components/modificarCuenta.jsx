@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 
 
 
-const CrearUsuario = (props) => {
+const ModificarUsuario = (props) => {
     return (
         <>
          <div className ="bg-secondary"  > 
@@ -44,7 +44,7 @@ const CrearUsuario = (props) => {
                 <div className="row justify-content-center">
                     
                     <Button variant="primary" type="submit" className="col-md-3">
-                        Crear usuario
+                        Modificar usuario
                     </Button>
                 </div>
                
@@ -61,4 +61,4 @@ const CrearUsuario = (props) => {
 
 
 
-export default CrearUsuario;
+export default ModificarUsuario;

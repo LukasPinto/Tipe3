@@ -6,6 +6,7 @@ import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
 import CrearUsuario from './components/crearCuenta'
+import ModificarUsuario from './components/modificarCuenta'
 
 
 const App = () => {
@@ -90,6 +91,7 @@ useEffect(()=>{
          
           <Route exact path="/crearusuario" component={CrearUsuario}></Route>
           <Route exact path="/" component={InicioSesion}></Route>
+          <Route exact path="/modificarusuario" component={ModificarUsuario}></Route>
 
          
          
