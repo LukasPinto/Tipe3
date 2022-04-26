@@ -1,12 +1,75 @@
-import React, { useState ,useContext} from 'react';
+/*import React, { useState ,useContext} from 'react';
 import { Form, Row, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router';
 import { UserContext } from '../context/userContext';
-import loginService from '../services/login.service'
-const InicioSesion = () => {
+import loginService from '../services/login.service';*/
+import './css/login.css';
+//import React, { useRef } from 'react';
+export default function IncioSesion(props) {
+
+
+  return (
+    <div className="Login">
+      <div className="row">
+        <div className="co1-sm-4 offset-4 mt-5">
+          <div className="card pt-5">
+            <div className="card-header text-center">
+              <h3>💻Iniciar</h3>
+            </div>
+            <div className="card=body">
+              <div className="input-group mb-4">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="basic-addon1">
+                    📥
+                  </span>
+                </div>
+                <input
+                  type="Gmail"
+                  className="form-control"
+                  placeholder="Correo"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+
+                />
+              </div>
+
+              <div className="input-group mb-4">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="basic-addon1">
+                    🔒
+                  </span>
+                </div>
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Clave"
+                  aria-label="Clave"
+                  aria-describedby="basic-addon2"
+
+                />
+              </div>
+              <button
+
+                className="btn btn-info btn-lg btn-lock "> Acceder </button>
+
+
+              <div className="card footer">
+                <span>Olvidaste tu contraseña?</span> <a href="https://"> Recuperar</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+
+}
+
+/*const InicioSesion = () => {
 const history=useHistory()
-const [body,setBody] = 
-useState( { 
+const [body,setBody] =
+useState( {
   correo:'',
   clave:''
 } );
@@ -22,7 +85,7 @@ const handleSubmit = (e)=>{
     }else{
 
       localStorage.setItem("token",response.data.token)
-      
+
       setUserState({
         correo:response.data.correo,
         rut:response.data.rut,
@@ -42,7 +105,7 @@ const handleChange =async (e)=>{
     })
     console.log(body.correo,body.clave)
   }
-return ( 
+return (
     <React.Fragment>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
@@ -64,10 +127,9 @@ return (
         </Form.Group>
         <button className="btn btn-primary btn-lg" type="submit" >iniciar Sesion</button>
       </Form>
-     
+
     </React.Fragment>
   );
-};
+};*/
 
 
-export default InicioSesion;

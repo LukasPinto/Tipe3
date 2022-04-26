@@ -3,11 +3,11 @@ import './App.css';
 import Axios from 'axios'
 import { Nav, Navbar,  DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-import InicioSesion from './components/login';
+import InicioSesion from './components/Login';
 import { UserContext } from './context/userContext'; 
 import Home from './components/inicio'
-import Mascota from './components/Mascota';
-import Agendarhora from './components/Agendarhora';
+
+
 const App = () => {
 
 const [userState,setUserState] = useState({
@@ -67,30 +67,17 @@ useEffect(()=>{
             <Navbar.Collapse className="justify-content-end pe-5">
               <Nav  >
                 <Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6   " to="/inicio" >Inicio</Link>
-                <Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6  " to="/servicios">Servicios</Link>
-                <Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6  m" to="/mascotas">Sobre nosotros</Link>
+
                 <DropdownButton as={ButtonGroup} title="Usuario" id="bg-nested-dropdown" className="  rounded border " variant="light">
-                  {!userState.estado ? (
+                  
                     <>
                       <Dropdown.Item  >
                         <Link to="/login" className="text-decoration-none" >iniciar sesion</Link>
                       </Dropdown.Item>
                       </>
-                      ): (
-                        <>
-                        <Dropdown.Item  >
-                      <Link to="/Mascota" className="text-decoration-none" >Mi Mascota</Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item  >
-                      <Link to="/Agendar" className="text-decoration-none" >Agendar Hora</Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item  >
-                      <Link to="/" className="text-decoration-none" onClick={logOut}>Log Out</Link>
-                      </Dropdown.Item>
+                       
+                       
                       
-
-                      </>
-                      )}
                 </DropdownButton>
               </Nav>
             </Navbar.Collapse>
@@ -100,15 +87,15 @@ useEffect(()=>{
         </div>
 
         <Switch>
-          <Route exact path="/contacto" >MI PAGINA ASDASDAS </Route>
-          <Route exact path="/Inicio" component={Home}></Route>
-          <Route exact path="/" component={Home}></Route>
+         
+          <Route exact path="/Inicio" component={InicioSesion}></Route>
+          <Route exact path="/" component={InicioSesion}></Route>
 
-          {!userState.estado ? (<Route exact path="/Mascota" component={InicioSesion} />):(<Route exact path="/Mascota" component={Mascota} />)}
+         
          
           {!userState.estado ? (<Route exact path="/Login" component={InicioSesion}></Route>):(<Route exact path="/Login" component={Home}></Route>)}
-          {!userState.estado ? (<Route exact path="/Agendar" component={InicioSesion}/>) : (<Route exact path="/Agendar" component={Agendarhora} />)}
 
+         
         </Switch>
       </Router>
     </UserContext.Provider>
