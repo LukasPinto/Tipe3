@@ -4,12 +4,17 @@ import { useHistory } from 'react-router';
 import { UserContext } from '../context/userContext';
 import loginService from '../services/login.service';*/
 import './css/login.css';
+
 //import React, { useRef } from 'react';
 export default function IncioSesion(props) {
   return (
+   
 
-    <div className="row container justify-content-center ">
-    <div className='col ps-0 pe-0 mt-5  bg-dark'>
+    <div className='container-fluid h-100'>
+
+    
+    <div className="row pb-0 pt-0 ">
+    <div className='col   ps-0 pe-0 mt-0 mb-0  bg-dark'>
       </div>
       <div className="col ps-0 pe-0  mt-5 ">
         <div className="card pt-5 ">
@@ -61,6 +66,8 @@ export default function IncioSesion(props) {
       
 
     </div>
+    </div>
+    
 
   )
 
