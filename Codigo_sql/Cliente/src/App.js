@@ -3,7 +3,7 @@ import './App.css';
 import Axios from 'axios'
 import { Nav, Navbar,  DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-import InicioSesion from './components/login';
+import InicioSesion from './components/Login';
 import { UserContext } from './context/userContext'; 
 import CrearUsuario from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'

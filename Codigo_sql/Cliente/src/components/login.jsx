@@ -7,9 +7,11 @@ import './css/login.css';
 //import React, { useRef } from 'react';
 export default function IncioSesion(props) {
   return (
-    <div className="container justify-content-center ">
 
-      <div className="co1-sm-4 offset-4 mt-5 justify-content-center">
+    <div className="row container justify-content-center ">
+    <div className='col ps-0 pe-0 mt-5  bg-dark'>
+      </div>
+      <div className="col ps-0 pe-0  mt-5 ">
         <div className="card pt-5 ">
           <div className="card-header text-center">
             <h3>💻Iniciar Usuario Municipal</h3>
@@ -51,13 +53,12 @@ export default function IncioSesion(props) {
               className="btn btn-info btn-lg btn-lock "> Acceder </button>
 
 
-            <div className="card footer">
-              <span>Olvidaste tu contraseña?</span> <a href="https://"> Recuperar</a>
-            </div>
+
           </div>
         </div>
 
       </div>
+      
 
     </div>
 
