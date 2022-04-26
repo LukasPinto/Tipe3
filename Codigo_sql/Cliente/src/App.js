@@ -88,8 +88,7 @@ useEffect(()=>{
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          <div className="content">
-          </div>
+         
         </div>
 
         <Switch>

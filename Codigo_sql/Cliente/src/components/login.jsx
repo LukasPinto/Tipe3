@@ -9,12 +9,12 @@ import './css/login.css';
 export default function IncioSesion(props) {
   return (
    
-
-    <div className='container-fluid h-100'>
+    <>
+    <div className='container-fluid h-100 '>
 
     
-    <div className="row pb-0 pt-0 ">
-    <div className='col   ps-0 pe-0 mt-0 mb-0  bg-dark'>
+    <div className="row pb-0 pt-0 mb-0 mt-0 h-100">
+    <div className='col ps-0 pe-0  bg-dark'>
       </div>
       <div className="col ps-0 pe-0  mt-5 ">
         <div className="card pt-5 ">
@@ -68,7 +68,7 @@ export default function IncioSesion(props) {
     </div>
     </div>
     
-
+    </>
   )
 
 }
