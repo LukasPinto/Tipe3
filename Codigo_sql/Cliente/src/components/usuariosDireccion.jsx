@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 
-const BandejaDireccion = (props) => {
+const UsuarioDireccion = (props) => {
     return (
         <>
          <div className ="bg-light"  > 
@@ -72,4 +72,4 @@ const BandejaDireccion = (props) => {
 
 
 
-export default BandejaDireccion;
+export default UsuarioDireccion;

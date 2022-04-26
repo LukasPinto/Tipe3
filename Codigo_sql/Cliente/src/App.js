@@ -7,9 +7,11 @@ import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
 import CrearUsuario from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'
-import BandejaDireccion from './components/usuariosDireccion'
+import UsuarioDireccion from './components/usuariosDireccion'
 import ListadoDirecciones from './components/listadoDirecciones'
 import VistaGeneral from './components/vistaAdmin'
+import SolicitarSubAlterno from './components/solicitarSubAlterno'
+import BandejaIntentos from './components/bandejaIntentos'
 
 
 const App = () => {
@@ -96,10 +98,11 @@ useEffect(()=>{
           <Route exact path="/" component={InicioSesion}></Route>
           <Route exact path="/modificarusuario" component={ModificarUsuario}/>
           <Route exact path="/listadodirecciones" component={ListadoDirecciones}/>
-          <Route exact path="/usuariosdireccion" component={BandejaDireccion}/>
+          <Route exact path="/usuariosdireccion" component={UsuarioDireccion}/>
           <Route exact path="/login" component={InicioSesion}/>
           <Route exact path="/vistageneral" component={VistaGeneral}/>
-         
+          <Route exact path="/solicitarSubAlterno" component={SolicitarSubAlterno}/>
+          <Route exact path="/bandejaIntentos" component={BandejaIntentos}/>
          
    
 
