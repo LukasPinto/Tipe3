@@ -7,7 +7,7 @@ import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
 import CrearUsuario from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'
-import BandejaDireccion from './components/bandejaDireccion'
+import BandejaDireccion from './components/usuariosDireccion'
 import ListadoDirecciones from './components/listadoDirecciones'
 
 
