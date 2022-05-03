@@ -17,11 +17,12 @@ router.post('/login', (req, respuesta) => {
             const userForToken = {
                 correo: res[0].correo,
                 rut: res[0].rut,
-                id: res[0].id_empl_direccion || res[0].id_empl_municipal
+                id: res[0].id_empl_direccion || res[0].id_empl_municipal,
+                cargo: res[0].id_cargo
             }
             console.log(res)
             const token = jwt.sign(userForToken, process.env.SIGN, { expiresIn: "5h" })
-            respuesta.send({ correo: res[0].correo, id: res[0].id_empl_municipal || res[0].id_empl_direccion, token })
+            respuesta.send({ correo: res[0].correo,rut:res[0].rut,id: res[0].id_empl_municipal || res[0].id_empl_direccion, cargo:res[0].id_cargo,token })
         } else {
             
             respuesta.json({ error: "El usuario no existe" })
@@ -74,5 +75,16 @@ router.get('/user/solicitud',verify, (req, respuesta) => {
     })
 })
 
+router.get("/Auth",verify,(req,res)=>{
+    const respuesta = {
+        correo: req.user.correo,
+        rut: req.user.rut,
+        id: req.user.id,
+        cargo: req.user.cargo
+    }
+    //console.log(req.user)
+    //console.log(respuesta)
+    res.json(respuesta)
+})
 
 module.exports = router;

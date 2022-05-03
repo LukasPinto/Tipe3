@@ -1,73 +1,125 @@
-/*import React, { useState ,useContext} from 'react';
-import { Form, Row, Col } from 'react-bootstrap'
+
+import './css/login.css';
 import { useHistory } from 'react-router';
 import { UserContext } from '../context/userContext';
-import loginService from '../services/login.service';*/
-import './css/login.css';
+import loginService from '../services/login.service'
+import { useState, useContext } from 'react';
 
-//import React, { useRef } from 'react';
+
 export default function IncioSesion(props) {
+  const [body, setBody] =
+    useState({
+      correo: '',
+      clave: ''
+    });
+
+  const { userState, setUserState } = useContext(UserContext)
+  const correo = body.correo
+  const clave = body.clave
+  const history = useHistory()
+  const handleChange = async (e) => {
+    await setBody({
+      ...body,
+      [e.target.name]: e.target.value
+    })
+    console.log(body.correo, body.clave)
+  }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(body.correo, body.clave)
+    const correo = body.correo
+    const clave = body.clave
+    loginService({ correo, clave }).then((response) => {
+      if (response.data.error) {
+        alert(response.data.error)
+      } else {
+        console.log(response.data)
+        console.log(response.data.id_empl_direccion)
+        localStorage.setItem("token", response.data.token)
+        setUserState({
+          correo: response.data.correo,
+          rut: response.data.rut,
+          id:response.data.id,
+          cargo: response.data.cargo,
+          estado: true
+        })
+        console.log(userState)
+        history.push('/')
+      }
+      //history.push("/Inicio")
+    }).catch = (error) => {
+      console.log(error)
+    }
+  }
+
   return (
-   
+
     <>
-    <div className='container-fluid h-100 '>
+      <div className='container-fluid h-100 '>
 
-    
-    <div className="row pb-0 pt-0 mb-0 mt-0 h-100">
-    <div className='col ps-0 pe-0  bg-dark'>
-      </div>
-      <div className="col ps-0 pe-0  mt-5 ">
-        <div className="card pt-5 ">
-          <div className="card-header text-center">
-            <h3>💻Iniciar Usuario Municipal</h3>
+
+        <div className="row pb-0 pt-0 mb-0 mt-0 h-100">
+          <div className='col ps-0 pe-0  bg-dark'>
           </div>
-          <div className="card=body">
-            <div className="input-group mb-4 ">
-              <div className="input-group-prependc">
-                <span className="input-group-text" id="basic-addon1">
-                  📥
-                </span>
+          <div className="col ps-0 pe-0  mt-5 ">
+            <div className="card pt-5 ">
+              <div className="card-header text-center">
+                <h3>💻Iniciar Usuario Municipal</h3>
               </div>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Correo@ejemplo.com"
-                aria-label="Username"
-                aria-describedby="basic-addon1 "
+              <div className="card=body">
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group mb-4 ">
+                    <div className="input-group-prependc">
+                      <span className="input-group-text" id="basic-addon1">
+                        📥
+                      </span>
+                    </div>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Correo@ejemplo.com"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1 "
+                      name='correo'
+                      value={body.correo}
+                      onChange={handleChange}
 
-              />
+                    />
+                  </div>
+
+                  <div className="input-group mb-4">
+                    <div className="input-group-prepend">
+                      <span className="input-group-text" id="basic-addon1">
+                        🔒
+                      </span>
+                    </div>
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Contraseña"
+                      aria-label="Clave"
+                      aria-describedby="basic-addon2"
+                      name="clave"
+                      value={body.clave}
+                      onChange={handleChange}
+
+                    />
+                  </div>
+                  <button className="btn btn-info btn-lg btn-lock " type="submit" > Acceder </button>
+
+                </form>
+
+              </div>
             </div>
 
-            <div className="input-group mb-4">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="basic-addon1">
-                  🔒
-                </span>
-              </div>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Contraseña"
-                aria-label="Clave"
-                aria-describedby="basic-addon2"
-
-              />
-            </div>
-            <button
-
-              className="btn btn-info btn-lg btn-lock "> Acceder </button>
-
-
-
           </div>
+
+
         </div>
-
       </div>
-      
 
-    </div>
-    </div>
-    
     </>
   )
 
