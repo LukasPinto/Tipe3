@@ -34,22 +34,13 @@ useEffect(()=>{
   Axios.get('http://localhost:3001/Auth',{headers:{
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },}).then((response)=>{
-    if(response.data.error) {
-      setUserState({
-       correo:"",
-       rut:0,
-       _id:0,
-       estado:false
-      })
-    }else{
-      console.log(response.data._id)
+    if(!response.data.error) {
       setUserState({
         correo:response.data.correo,
         rut:response.data.rut,
         _id:response.data._id,
         estado:true
       })
-      
     }
   })
 },[])
