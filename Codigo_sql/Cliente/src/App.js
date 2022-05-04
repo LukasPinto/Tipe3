@@ -5,7 +5,7 @@ import { Nav, Navbar,  DropdownButton, ButtonGroup, Dropdown } from 'react-boots
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
-import CrearUsuario from './components/crearCuenta'
+import CrearCuenta from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'
 import UsuarioDireccion from './components/usuariosDireccion'
 import ListadoDirecciones from './components/listadoDirecciones'
@@ -93,7 +93,7 @@ useEffect(()=>{
 
         <Switch>
          
-          <Route exact path="/crearusuario" component={CrearUsuario}/>
+          <Route exact path="/crearcuenta" component={CrearCuenta}/>
           <Route exact path="/" component={InicioSesion}></Route>
           <Route exact path="/modificarusuario" component={ModificarUsuario}/>
           <Route exact path="/listadodirecciones" component={ListadoDirecciones}/>
