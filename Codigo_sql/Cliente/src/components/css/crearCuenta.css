@@ -9,7 +9,7 @@ body {
   font-family: sans-serif;
   /*background: #12c2e9;  /* fallback for old browsers */
   /*background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #c3e7c3, #8bd592, #21b64ec9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #c2f0c1, #60bc7a, #93d38c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   
 }
 
@@ -49,7 +49,7 @@ body, html, .App, #root, .outer {
   text-align:center;
   margin: 0;
   line-height: 2;
-  
+  color: #ffffff;
   padding-bottom: 10px;
   font-weight: bold;
  
@@ -70,7 +70,7 @@ body, html, .App, #root, .outer {
 }
 
 .forgot-password a {
-  color: #167bff;
+  color: #d8dfe8;
 }
 .contener{
     border-radius: 2%;
@@ -78,15 +78,24 @@ body, html, .App, #root, .outer {
     margin-right: 30%;
  
     contain: content;
-    background-color: #ffffff;
+    background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
 }
 .botonCrear{
-    background-color: #358040;
+    background-color: #41503b;
     border-radius: 5%;
     width: 20%;
-    border-color: #55918d;
+    border-color: #8cce74;
    
 }
 .outer-text{
-    color: #000000;
+    color: #ffffff;
+}
+.outer-control{
+    background-color:rgba(0, 0, 0, 0.3);
+}
+.imagen{
+    display:block;
+    margin:auto;
+    width: 150px;
+    opacity: 0.3;
 }
