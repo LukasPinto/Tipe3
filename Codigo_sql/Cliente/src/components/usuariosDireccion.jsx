@@ -6,16 +6,19 @@ const UsuarioDireccion = (props) => {
     return (
         <>
         <div className='contenedor3'>
-          <h3 className='tituloB' >Direccion de transito</h3>
+        <h2 className='tituloTabla'  >Direccion de transito</h2>
+          <h5 className='tituloTabla' >Usuarios de esta direccion</h5>
+          
         </div>
           <div className=''>
-            <div className="row justify-content-center">
-                <Button className="botoncito1" >
-                        Ordenar
-                </Button>
-               </div>
-
+            
+                
+               
                <div className="algo">
+               
+                 <btn className="botoncito1 button" type="button" >{' '}
+            Ordenar
+          </btn>
             <Table className= "fondoTabla" striped bordered hover size="s">
   <thead>
     <tr>
@@ -31,31 +34,32 @@ const UsuarioDireccion = (props) => {
       <td>Usuario de direccion</td>
       <td>juanito.perez@cartagena.cl</td>
       <td>Juanito Perez</td>
-      <td><Button variant="primary">Editar</Button>{' '}</td>
-      <td><Button variant="primary">Eliminar</Button>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Editar</btn>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Eliminar</btn>{' '}</td>
     </tr>
     <tr>
       <td>Subalterno de direccion</td>
       <td>onur.aksal@cartagena.cl</td>
       <td>Onur Aksal</td>
-      <td><Button variant="primary">Editar</Button>{' '}</td>
-      <td><Button variant="primary">Eliminar</Button>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Editar</btn>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Eliminar</btn>{' '}</td>
     </tr>
     <tr>
       <td>Administrador</td>
       <td>larry.the.bird@cartagena.c</td>
       <td>Larry the Bird</td>
-      <td><Button variant="primary">Editar</Button>{' '}</td>
-      <td><Button variant="primary">Eliminar</Button>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Editar</btn>{' '}</td>
+      <td><btn className="boton-centro button" type="button">Eliminar</btn>{' '}</td>
     </tr>
   </tbody>
 </Table>
-</div>
 
-</div>    
+
+
        
-            <Button variant="primary">Crear usuario</Button>{' '}
-           
+<btn className="botoncito1 button" type="button">Crear usuario</btn>{' '}
+</div> 
+</div>           
         </>
         
     );
