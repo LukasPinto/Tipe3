@@ -6,7 +6,7 @@ const UsuarioDireccion = (props) => {
     return (
         <>
         <div className='contenedor3'>
-        <h2 className='tituloTabla'  >Direccion de transito</h2>
+        <h1 className='tituloTabla'  >Direccion de transito</h1>
           <h5 className='tituloTabla' >Usuarios de esta direccion</h5>
           
         </div>
