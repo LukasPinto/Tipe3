@@ -1,0 +1,35 @@
+.contenedor{
+    background-color: #ffffff;
+    margin: auto;
+    padding: 10px;
+
+}
+.botoncito1 {
+    background-color: #ddfaed; /* Green */
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+    border-radius: 8px;
+    height: 30px;
+    border: 1px solid #7dbb7f;
+    
+  }
+  .boton-centro {
+    background-color: #ddfaed; /* Green */
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+    border-radius: 8px;
+    height: 30px;
+    border: 1px solid #7dbb7f;
+  }

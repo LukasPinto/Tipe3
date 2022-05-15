@@ -1,9 +1,13 @@
 import React from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
+import { useLocation } from 'react-router-dom';
 const PuntosSolicitud = (props) => {
+  const location = useLocation()
+  const direccion  = location.state
     return (
         <>
+        {console.log(direccion)}
         <div>
         <p class="cajita1">Puntos de la solicitud</p>
         </div>
