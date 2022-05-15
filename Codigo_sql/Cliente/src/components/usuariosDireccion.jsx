@@ -4,14 +4,14 @@ import "./css/usuariosDireccion.css"
 
 const UsuarioDireccion = (props) => {
     return (
-        <>
-        <div className=''></div>
+        <><div className='fondoArriba'>
+        
         <h3 className='titulo1' >DIRECCION DE TRANSITO</h3>
-         
+        </div>
          
 
            
-            <div className='contener'>
+            <div className='contenedor'>
            
             <div className="row justify-content-center">
                 <Button className="boton1" >

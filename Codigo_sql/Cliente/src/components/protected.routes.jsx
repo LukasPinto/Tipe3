@@ -19,14 +19,16 @@ const PrivateRoutes = (props) => {
       {userState.cargo === 1 && (<Route exact path="/modificarusuario" component={ModificarUsuario} />)}
       
       {userState.cargo === 1 && ( <Route exact path="/listadodirecciones" component={ListadoDirecciones} />)}
-      {userState.cargo === 1 && ( <Route exact path="/usuariosdireccion" component={UsuarioDireccion} /> )}
+
       {userState.cargo === 1 && ( <Route exact path="/usuariosdireccion" component={UsuarioDireccion} /> )}
       
       {userState.cargo === 2 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
       {userState.cargo === 3 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
-      {userState.cargo === 2 && ( <Route exact path="/solicitarSubAlterno" component={SolicitarSubAlterno} /> )}
-      {userState.cargo === 2 && ( <Route exact path="/bandejaIntentos" component={BandejaIntentos} /> )}
-      {userState.cargo === 3 && ( <Route exact path="/bandejaIntentos" component={BandejaIntentos} /> )}
+
+      {userState.cargo === 2 && ( <Route exact path="/solicitarsubalterno" component={SolicitarSubAlterno} /> )}
+      {userState.cargo === 2 && ( <Route exact path="/bandejaintentos" component={BandejaIntentos} /> )}
+      
+      {userState.cargo === 3 && ( <Route exact path="/bandejaintentos" component={BandejaIntentos} /> )}
       {(userState.cargo ===0) && (<Route to="/login" component={InicioSesion} />)}
       
       
