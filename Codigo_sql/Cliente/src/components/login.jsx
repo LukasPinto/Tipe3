@@ -66,7 +66,7 @@ export default function IncioSesion(props) {
           history.push('/vistageneral')
         }
         else {
-          history.push("/")
+          history.push("/bandejaintentos")
         }
         
       }
