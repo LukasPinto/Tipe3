@@ -2,36 +2,32 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 
 
-
-const ModificarUsuario = (props) => {
+const ModificarCuenta = (props) => {
     return (
         <>
-         <div className ="bg-secondary"  > 
+         <div className ="contener"  > 
          <Form >
      
             <div className="row justify-content-center">
             <Form.Group className="mb-3 col col-md-3 mt-auto">
                 <Form.Label>Nombre Apellido</Form.Label>
                 <Form.Control type="text" name="edad"  />
-            </Form.Group>
-            <Form.Group className="mb-3 col col-md-3 mt-auto">
+        
+       
                 <Form.Label>Direccion</Form.Label>
                 <Form.Control type="text" name="edad"  />
-            </Form.Group>
-        </div>
-            <div className="row justify-content-center">
 
-                <Form.Group className="mb-3 col col-md-3 mt-auto">
+ 
+
+          
                     <Form.Label>Correo</Form.Label>
                     <Form.Control type="email" name="edad"  />
-                </Form.Group>
-                <Form.Group className="mb-3 col col-md-3 mt-auto">
+
+     
                     <Form.Label>Contraseña</Form.Label>
                     <Form.Control type="password" name="edad"  />
-                </Form.Group>
-            </div>
-            <div className="row justify-content-center">
-            <Form.Group className="mb-3 col col-md-3 mt-auto">
+           
+      
                     <Form.Label>Cargo</Form.Label>
                     <Form.Select type="email" name="edad"  >
                     <option>Seleccione el cargo del usuario</option>
@@ -61,4 +57,4 @@ const ModificarUsuario = (props) => {
 
 
 
-export default ModificarUsuario;
+export default ModificarCuenta;

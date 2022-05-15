@@ -1,29 +1,28 @@
 import React from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
+import "./css/usuariosDireccion.css"
 
 const UsuarioDireccion = (props) => {
     return (
         <>
-         <div className ="bg-light"  > 
-         <Form >
-            <div className ="bg-light link" >
-            <Badge bg="secondary">Direccion de transito</Badge>
-            
-            <Form.Group className="mb-3 col-md-1 mt-auto">
-                <Badge bg="secondary">Usuarios de esta direccion</Badge>
-                
-            </Form.Group>
+        <div className=''></div>
+        <h3 className='titulo1' >DIRECCION DE TRANSITO</h3>
+         
+         
+
            
-            </div>
-            <Form.Group className="col-md-4 offset-md-10">
-                <Button variant="primary" type="submit" className="col-md-3">
+            <div className='contener'>
+           
+            <div className="row justify-content-center">
+                <Button className="boton1" >
                         Ordenar
                 </Button>
+               </div>
+        
+              
                
-            </Form.Group>
-            
-            <div>
-            <Table striped bordered hover size="s">
+               <div className="algo">
+            <Table className= "fondoTabla" striped bordered hover size="s">
   <thead>
     <tr>
       <th>Tipo de usuario</th>
@@ -57,10 +56,12 @@ const UsuarioDireccion = (props) => {
     </tr>
   </tbody>
 </Table>
-            </div>
-            </Form>
+</div>
+
+</div>    
+       
             <Button variant="primary">Crear usuario</Button>{' '}
-            </div>
+           
         </>
         
     );

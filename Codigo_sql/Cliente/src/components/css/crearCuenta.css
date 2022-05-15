@@ -80,12 +80,15 @@ body, html, .App, #root, .outer {
     contain: content;
     background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
 }
-.botonCrear{
-    background-color: #41503b;
-    border-radius: 5%;
-    width: 20%;
-    border-color: #8cce74;
-   
+.boton1 {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  width: 10cm;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 .outer-text{
     color: #ffffff;

@@ -6,8 +6,7 @@ import  img1 from './../assets/img/usuario.png';
 
 const CrearCuenta = (props) => {
     return (
-       
-        
+
         <div className="contener">
          <Form >
          <img className ='imagen'src={img1}/>
@@ -33,18 +32,19 @@ const CrearCuenta = (props) => {
             
  
                     <Form.Label className='outer-text'>Cargo</Form.Label>
-                    <Form.Select className= "outer-control"   >
-                    <option >Seleccione el cargo del usuario</option>
+                    <Form.Select type="email" className= "outer-control"   >
+                    <option className ="outer-text">Seleccione el cargo del usuario</option>
                     <option value="1">Usuario de direccion</option>
                     <option value="2">Subalterno de direccion</option>
                     <option value="3">Administrador</option>
                     </Form.Select>
                     </Form.Group>                   
-                    </div> 
-                    <div className="row justify-content-center"> 
-                    <Button className="botonCrear">
+                    
+                    
+                    <Button variant="outline-success" className="boton1">
                         Crear usuario
-                    </Button>
+                   </Button>{' '}
+                     
                     </div> 
             </Form>
             </div>
