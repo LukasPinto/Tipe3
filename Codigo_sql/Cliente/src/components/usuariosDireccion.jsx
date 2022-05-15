@@ -4,9 +4,8 @@ import "./css/usuariosDireccion.css"
 
 const UsuarioDireccion = (props) => {
     return (
-        <><div className='fondoArriba'>
-        
-        <h3 className='titulo1' >DIRECCION DE TRANSITO</h3>
+        <><div className='contenedor3'>
+          <h3 className='tituloB' >Direccion de transito</h3>
         </div>
          
 
