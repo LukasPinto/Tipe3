@@ -2,12 +2,30 @@ import React from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import { useLocation } from 'react-router-dom';
+import listadoPuntos from '../services/puntosDireccion.service';
+import { useState,useEffect } from 'react';
 const PuntosSolicitud = (props) => {
   const location = useLocation()
   const direccion  = location.state
+  const [puntos,setPuntos] = useState([])
+  const [actualizar, setActualizar] = useState(true)
+  const [traerDatos, setTraerDatos] = useState(true)
+  useEffect(() => {
+      listadoPuntos(direccion.id_direccion)
+          .then((Response) => {
+
+              setPuntos(Response.data)
+              console.log(puntos)
+              setActualizar(!actualizar)
+          }).
+          catch(() => {
+              alert("error")
+          })
+  }, [traerDatos])
+
     return (
         <>
-        {console.log(direccion)}
+        {console.log(puntos)}
         <div>
         <p class="cajita1">Puntos de la solicitud</p>
         </div>
