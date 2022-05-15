@@ -10,6 +10,8 @@ import InicioSesion from "./login";
 import VistaGeneral from "./vistaAdmin";
 import SolicitarSubAlterno from "./solicitarSubAlterno";
 import BandejaIntentos from "./bandejaIntentos";
+import HistorialSolicitud from "./historialSolicitud";
+import PuntosSolicitud from "./puntosSolicitud";
 const PrivateRoutes = (props) => {
   const { userState } = useContext(UserContext)
   console.log(userState)
@@ -17,10 +19,11 @@ const PrivateRoutes = (props) => {
     <Switch>
       {userState.cargo === 1 && (<Route exact path="/crearusuario" component={CrearUsuario} />)}
       {userState.cargo === 1 && (<Route exact path="/modificarusuario" component={ModificarUsuario} />)}
-      
+      {userState.cargo === 1 && (<Route exact path="/historialsolicitud" component={HistorialSolicitud} />)}
       {userState.cargo === 1 && ( <Route exact path="/listadodirecciones" component={ListadoDirecciones} />)}
 
       {userState.cargo === 1 && ( <Route exact path="/usuariosdireccion" component={UsuarioDireccion} /> )}
+      {userState.cargo === 1 && ( <Route exact path="/puntossolicitud" component={PuntosSolicitud} /> )}
       
       {userState.cargo === 2 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
       {userState.cargo === 3 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
