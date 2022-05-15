@@ -4,22 +4,17 @@ import "./css/usuariosDireccion.css"
 
 const UsuarioDireccion = (props) => {
     return (
-        <><div className='contenedor3'>
+        <>
+        <div className='contenedor3'>
           <h3 className='tituloB' >Direccion de transito</h3>
         </div>
-         
-
-           
-            <div className='contenedor'>
-           
+          <div className=''>
             <div className="row justify-content-center">
-                <Button className="boton1" >
+                <Button className="botoncito1" >
                         Ordenar
                 </Button>
                </div>
-        
-              
-               
+
                <div className="algo">
             <Table className= "fondoTabla" striped bordered hover size="s">
   <thead>
