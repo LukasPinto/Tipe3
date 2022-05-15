@@ -89,7 +89,6 @@ router.get("/Auth",verify,(req,res)=>{
 
 router.post("/crearUsuario",verify,(req,respuesta) => {
     const datos = req.body.user;
-    console.log(req.body.admin.id_cargo == 1)
     if (req.body.admin.id_cargo == 1){
         conn.query(`INSERT INTO usuario_direccion (id_direccion,id_cargo,nombre,rut,correo,clave) VALUES (?,?,?,?,?,?)`,[datos.id_direccion,datos.id_cargo,datos.id_cargo,datos.nombre,datos.rut,datos.correo,datos.clave], (err,res) =>{
             if(!err){
