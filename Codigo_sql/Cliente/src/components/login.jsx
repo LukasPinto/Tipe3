@@ -61,8 +61,14 @@ export default function IncioSesion(props) {
           cargo: response.data.cargo,
           estado: true
         })
-        console.log(userState)
-        history.push('/')
+        console.log(userState.cargo)
+        if(response.data.cargo === 1){
+          history.push('/vistageneral')
+        }
+        else {
+          history.push("/")
+        }
+        
       }
       //history.push("/Inicio")
     }).catch = (error) => {
