@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
 import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const VistaGeneral = (props) => {
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
@@ -58,7 +59,7 @@ const VistaGeneral = (props) => {
                                     return<><tr>
                                     <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Button variant="primary">Ver</Button>{' '}</td>
+                                    <td><Link to={{pathname:"/puntossolicitud", state: {id_direccion:value.id_direccion,nombre_direccion:value.nombre_direccion}}}><Button variant="primary">Ver</Button></Link>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                 </tr>
