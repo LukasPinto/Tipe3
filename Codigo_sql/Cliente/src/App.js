@@ -5,20 +5,22 @@ import { Nav, Navbar,  DropdownButton, ButtonGroup, Dropdown } from 'react-boots
 import { BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import InicioSesion from './components/login';
 import { UserContext } from './context/userContext'; 
-import CrearCuenta from './components/crearCuenta'
+import CrearUsuario from './components/crearCuenta'
 import ModificarUsuario from './components/modificarCuenta'
 import UsuarioDireccion from './components/usuariosDireccion'
 import ListadoDirecciones from './components/listadoDirecciones'
 import VistaGeneral from './components/vistaAdmin'
 import SolicitarSubAlterno from './components/solicitarSubAlterno'
 import BandejaIntentos from './components/bandejaIntentos'
-
+import PrivateRoutes from './components/protected.routes'
 
 const App = () => {
 
 const [userState,setUserState] = useState({
     correo:"",
     rut:0,
+    id:0,
+    cargo:0,
     estado:false
   })
 
@@ -28,28 +30,27 @@ const logOut = ()=>{
   setUserState({
     correo:"",
     rut:0,
+    id: 0,
+    cargo:0,
     estado:false
    })
  
 }
 
 useEffect(()=>{
+ 
   Axios.get('http://localhost:3001/Auth',{headers:{
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },}).then((response)=>{
-    if(response.data.error) {
+    if(!response.data.error) {
+      console.log(response.data)
       setUserState({
-       correo:"",
-       rut:0,
-       estado:false
+        correo: response.data.correo,
+        rut: response.data.rut,
+        id:response.data.id,
+        cargo: response.data.cargo,
+        estado: true
       })
-    }else{
-      setUserState({
-        correo:response.data.correo,
-        rut:response.data.rut,
-        estado:true
-      })
-      
     }
   })
 },[])
@@ -92,17 +93,18 @@ useEffect(()=>{
         </div>
 
         <Switch>
-         
-          <Route exact path="/crearcuenta" component={CrearCuenta}/>
-          <Route exact path="/" component={InicioSesion}></Route>
+       
+          {/*<Route exact path="/crearusuario" component={CrearUsuario}/>
+          <Route exact path="/" component={InicioSesion}/>
           <Route exact path="/modificarusuario" component={ModificarUsuario}/>
           <Route exact path="/listadodirecciones" component={ListadoDirecciones}/>
           <Route exact path="/usuariosdireccion" component={UsuarioDireccion}/>
           <Route exact path="/login" component={InicioSesion}/>
           <Route exact path="/vistageneral" component={VistaGeneral}/>
           <Route exact path="/solicitarSubAlterno" component={SolicitarSubAlterno}/>
-          <Route exact path="/bandejaIntentos" component={BandejaIntentos}/>
-         
+  <Route exact path="/bandejaIntentos" component={BandejaIntentos}/>*/}
+        
+          <PrivateRoutes></PrivateRoutes>
    
 
          
