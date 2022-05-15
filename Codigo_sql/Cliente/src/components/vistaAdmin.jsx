@@ -4,10 +4,11 @@ import direccionesService from '../services/listadoDirecciones.service';
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {  DirContext,DireccionContext } from '../context/dirContext';
+import { useLocalStorage } from './custom/useLocalStorage';
 
 const VistaGeneral = () => {
-
-    const {dirContext,setDirContext} = useContext(DireccionContext)
+    const [local,setLocal] = useLocalStorage('direccion','')
+    const {DirContext,setDirContext} = useContext(DireccionContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
@@ -24,8 +25,13 @@ const VistaGeneral = () => {
                 alert("error")
             })
     }, [traerDatos])
+    
+const handleClick = (e)=>{
 
+         setDirContext(e.target.value)
+         setLocal(e.target.value)
 
+}
     return (
         <>
 
@@ -68,7 +74,7 @@ const VistaGeneral = () => {
                                     return<><tr>
                                     <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Link to={{pathname:"/"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={()=>setDirContext(value.id_direccion)} >Ver</Button></Link>{' '}</td>
+                                    <td><Link to={{pathname:"/puntossolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                 </tr>
