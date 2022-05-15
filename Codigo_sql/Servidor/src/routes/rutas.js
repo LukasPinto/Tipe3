@@ -33,11 +33,9 @@ router.post('/login', (req, respuesta) => {
 router.get('/direcciones', verify,(req, respuesta) => {
     conn.query(`select * FROM direccion_municipal`, (res, err) => {
         if (!err) {
-            console.log(res)
             respuesta.send(res)
         }
         else {
-            console.log(err)
             respuesta.send(err)
         }
     })
@@ -87,4 +85,23 @@ router.get("/Auth",verify,(req,res)=>{
     res.json(respuesta)
 })
 
+router.post("/crearUsuario",verify,(req,respuesta) => {
+    const datos = req.body.user;
+    console.log(req.body.user,req.body.admin)
+    if (req.body.admin.id_cargo == 1){
+        conn.query(`INSERT INTO usuario_direccion (id_direccion,id_cargo,nombre,rut,correo,clave) VALUES (?,?,?,?,?,?)`,[datos.id_direccion,datos.id_cargo,datos.nombre,datos.rut,datos.correo,datos.clave], (err,res) =>{
+            if(!err){
+                respuesta.send(res)
+            }
+            else{
+                respuesta.json("error")
+            }
+    
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+    
+})
 module.exports = router;
