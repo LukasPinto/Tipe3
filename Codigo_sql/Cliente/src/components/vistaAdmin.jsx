@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const VistaGeneral = (props) => {
+import {  DirContext,DireccionContext } from '../context/dirContext';
+
+const VistaGeneral = () => {
+
+    const {dirContext,setDirContext} = useContext(DireccionContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
+    
     useEffect(() => {
         direccionesService()
             .then((Response) => {
@@ -20,8 +25,12 @@ const VistaGeneral = (props) => {
             })
     }, [traerDatos])
 
+
     return (
         <>
+
+
+            
             <div className="bg-light"  style={{backgroundColor: 'red'}}>
                 <Form >
 
@@ -59,7 +68,7 @@ const VistaGeneral = (props) => {
                                     return<><tr>
                                     <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Link to={{pathname:"/puntossolicitud", state: {id_direccion:value.id_direccion,nombre_direccion:value.nombre_direccion}}}><Button variant="primary">Ver</Button></Link>{' '}</td>
+                                    <td><Link to={{pathname:"/"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={()=>setDirContext(value.id_direccion)} >Ver</Button></Link>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                 </tr>
@@ -71,6 +80,7 @@ const VistaGeneral = (props) => {
                 </Form>
                 <Button variant="primary">Crear direccion</Button>{' '}
             </div>
+
         </>
 
     );

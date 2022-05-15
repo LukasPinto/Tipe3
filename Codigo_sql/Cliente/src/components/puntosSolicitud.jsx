@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import { useLocation } from 'react-router-dom';
 import listadoPuntos from '../services/puntosDireccion.service';
 import { useState,useEffect } from 'react';
+import { DireccionContext } from '../context/dirContext';
 const PuntosSolicitud = (props) => {
-  const location = useLocation()
-  const direccion  = location.state
+
   const [puntos,setPuntos] = useState([])
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
+  const [dirContext,setDirContext] = useContext(DireccionContext)
   useEffect(() => {
-      listadoPuntos(direccion.id_direccion)
+    console.log(dirContext.id_direccion)
+      listadoPuntos(dirContext.id_direccion)
           .then((Response) => {
 
               setPuntos(Response.data)
