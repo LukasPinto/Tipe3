@@ -1,13 +1,13 @@
 import React from 'react';
-import { Form, Button, FormLabel } from 'react-bootstrap';
 import "./css/crearCuenta.css"
+import { Form, Button, FormLabel } from 'react-bootstrap';
 import  img1 from './../assets/img/usuario.png';
 
 
 const CrearCuenta = (props) => {
     return (
 
-        <div className="contener">
+        <div className="contenedor">
          <Form >
          <img className ='imagen'src={img1}/>
             <h5 className='outer-h5'>Crear usuario</h5>
