@@ -1,7 +1,24 @@
 import React from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
-
+import direccionesService from '../services/listadoDirecciones.service';
+import { useState,useEffect } from 'react';
 const VistaGeneral = (props) => {
+    const [direcciones, setDirecciones] = useState([])
+    const [actualizar, setActualizar] = useState(true)
+    const [traerDatos, setTraerDatos] = useState(true)
+    useEffect(() => {
+        direccionesService()
+            .then((Response) => {
+
+                setDirecciones(Response.data)
+                console.log(direcciones)
+                setActualizar(!actualizar)
+            }).
+            catch(() => {
+                alert("error")
+            })
+    }, [traerDatos])
+
     return (
         <>
             <div className="bg-light"  style={{backgroundColor: 'red'}}>
@@ -35,25 +52,18 @@ const VistaGeneral = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Direccion de deporte</td>
+                                
+                                
+                                {direcciones.map((value,key)=>{ 
+                                    return<><tr>
+                                    <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
                                     <td><Button variant="primary">Ver</Button>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                 </tr>
-                                <tr>
-                                    <td>Direccion de transito</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Button variant="primary">Ver</Button>{' '}</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                </tr>
-                                <tr>
-                                    <td>Direccion de Artes</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Button variant="primary">Ver</Button>{' '}</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                </tr>
+                                </>
+                                })}
                             </tbody>
                         </Table>
                     </div>
