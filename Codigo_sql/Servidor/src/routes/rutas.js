@@ -99,7 +99,5 @@ router.post("/crearUsuario",verify,(req,respuesta) => {
         }
 
     })
-
-
 })
 module.exports = router;
