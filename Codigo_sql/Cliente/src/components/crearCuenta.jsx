@@ -2,8 +2,10 @@ import React from 'react';
 import "./css/crearCuenta.css"
 import { Form, Button, FormLabel } from 'react-bootstrap';
 import img1 from './../assets/img/usuario.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useContext} from 'react';
 import direccionesService from '../services/listadoDirecciones.service';
+import crearUsuario from '../services/crearUsuario.service';
+import { UserContext } from '../context/userContext';
 const CrearCuenta = (props) => {
 
     /*const id_direccion = body.correo
@@ -12,6 +14,7 @@ const CrearCuenta = (props) => {
     const rut = body.rut
     const correo = body.correo
     const clave = body.clave*/
+    const { userState} = useContext(UserContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
@@ -46,12 +49,29 @@ const CrearCuenta = (props) => {
         console.log(body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        crearUsuario(body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave,userState.cargo)
+            .then((Response) => {
+                console.log(Response)
+                if (Response.data.message) {
+                    alert("error")
+                }
+                else {
+                    console.log(Response.data)
+                    alert("Usuario creado exitosamente")
+                }
+            })
 
+            .catch(() => {
+                alert("error")
+            })
+    }
 
     return (
 
         <div className="contenedor">
-            <Form >
+            <Form onSubmit={handleSubmit}>
                 <img className='imagen' src={img1} />
                 <h5 className='outer-h5'>Crear usuario</h5>
 
@@ -71,7 +91,7 @@ const CrearCuenta = (props) => {
                             onChange={handleChange} >
                             <option  value={false} readOnly>Seleccione el cargo del usuario</option>
                             {direcciones.map((value) => {
-                            return <option value={value.id_direccion} >{value.nombre_direccion}</option>
+                            return <option value={value.id_direccion} key={value.nombre_direccion} >{value.nombre_direccion}</option>
                         })
                         }
                         </Form.Select>
@@ -81,6 +101,11 @@ const CrearCuenta = (props) => {
                         <Form.Control className="outer-control" type="email"  
                             name='correo'
                             value={body.correo}
+                            onChange={handleChange}  />
+                        <Form.Label className='outer-text'>Rut</Form.Label>
+                        <Form.Control className="outer-control" type="text"  
+                            name='rut'
+                            value={body.rut}
                             onChange={handleChange}  />
 
 
@@ -104,8 +129,7 @@ const CrearCuenta = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-
-                    <Button variant="outline-success" className="boton1">
+                    <Button variant="outline-success" type="submit" className="boton1" >
                         Crear usuario
                     </Button>{' '}
 
