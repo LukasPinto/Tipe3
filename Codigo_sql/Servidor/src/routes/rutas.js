@@ -157,7 +157,7 @@ router.post("/estado/solicitud",verify,(req,respuesta)=>{
 router.post("/puntos/solicitud",verify,(req,respuesta)=>{
 
     const solicitud = req.body.id_solicitud;
-    conn.query(`select * from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
+    conn.query(`select solicitud.id_solicitud,id_direccion,id_empl_municipal,fecha_inicio,puntos.estado ,id_punto,titulo,archivo,archivo_plantilla,inicio,termino from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
         if(!err){
             respuesta.send(res)
         }

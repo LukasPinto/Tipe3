@@ -27,9 +27,10 @@ const HistorialSolicitud = (props) => {
   }, [traerDatos])
 
   const handleClick = async(e) => {
-    
+    setSolicitud(e.target.value)
     await listaPuntos(e.target.value)
     .then((Response) => {
+      
       setEstado(Response.data[0].estado)
       }).
       catch((err) => {

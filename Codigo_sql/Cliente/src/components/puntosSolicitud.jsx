@@ -11,18 +11,18 @@ import solicitudes from '../services/solicitudes.sevice';
 const PuntosSolicitud = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
   const [estado, setEstado] = useLocalStorage('estado', '')
-  const [solicitud,setSolicitud] = useLocalStorage('solicitud','')
+  const [solicitud, setSolicitud] = useLocalStorage('solicitud', '')
   const [puntos, setPuntos] = useState([])
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
 
   useEffect(() => {
-    
+
     listaPuntos(solicitud)
       .then((Response) => {
-          console.log(solicitud)
-          setPuntos(Response.data)
-        
+        console.log(solicitud)
+        setPuntos(Response.data)
+
         setActualizar(!actualizar)
       }).
       catch(() => {
@@ -31,10 +31,11 @@ const PuntosSolicitud = (props) => {
       })
   }, [traerDatos])
 
- 
+
   return (
     <>
- 
+      {console.log(puntos)}
+
       {(local === '') ? (<Redirect to='/vistageneral'></Redirect>) :
         <>
 
@@ -51,45 +52,66 @@ const PuntosSolicitud = (props) => {
 
                   <th>Puntos</th>
                   <th>Descripcion del punto</th>
-                  {(estado=="aceptado" || estado=="rechazado") ? <></> :
-                  <>
-                  <th>Eliminar punto</th>
-                  <th>Editar punto</th>
-                  </>}
-                  <th>Asignar encargado</th>
-                 <th>Eliminar punto</th>
-                  <th>Editar punto</th>
-                  <th>Historial</th>
-                  <th>Fecha inicio</th>
-                  <th>Fecha termino</th>
-                  <th>Estado</th>
+                  {(estado === "aceptado" || estado === "rechazado" || estado === "false") ? <>
+                    <th>Eliminar punto</th>
+                    <th>Editar punto</th>
+                    <th>Asignar encargado</th>
+                    <th>Editar punto</th>
+                    <th>Historial</th>
+                    <th>Fecha inicio</th>
+                    <th>Fecha termino</th>
+                    <th>Estado</th>
+                  </> :
+                    <>
+                      <th>Eliminar punto</th>
+                      <th>Editar punto</th>
+                      <th>Asignar encargado</th>
+                      <th>Editar punto</th>
+                      <th>Historial</th>
+                      <th>Fecha inicio</th>
+                      <th>Fecha termino</th>
+                      <th>Estado</th>
+                    </>
+
+                  }
+
 
                 </tr>
               </thead>
               <tbody>
-                  {puntos.map((value, key) => {
-                    return <>
+                {puntos.map((value, key) => {
+                  return <>
                     <tr>
-                      <td>{key+1}</td>
+                      <td>{key + 1}</td>
                       <td>{value.titulo}</td>
-                      {(estado=="aceptado" || estado=="rechazado") ?
-                       <>
-                       </>
-                       :
-                       <>
-                      <td><Button variant="primary">ASIGNAR</Button>{' '}</td>
-                      <td><Button variant="primary">ELIMINAR</Button>{' '}</td>
-                      
-                      </>}
-                      
-                      <td><Button variant="primary">EDITAR</Button>{' '}</td>
-                      <td><Button variant="primary">VER</Button>{' '}</td>
-                      <td>{value.inicio.substring(0,10)}</td>
-                      <td>{value.termino.substring(0,10)}</td>
-                      <td>{value.estado}</td>
-                      </tr>
-                    </>
-                  })}
+                      {(estado == "aceptado" || estado == "rechazado" || estado == "false") ?
+                        <>
+                          <td>{' solicitud cerrada'}</td>
+                          <td>{' solicitud cerrada'}</td>
+                          <td>{' solicitud cerrada'}</td>
+                          <td>{' solicitud cerrada'}</td>
+                          <td><Button variant="primary">VER</Button>{' '}</td>
+                          <td>{value.inicio.substring(0, 10)}</td>
+                          <td>{value.termino.substring(0, 10)}</td>
+                          <td>{value.estado}</td>
+                        </>
+                        :
+                        <>
+                          <td><Button variant="primary">ELIMINAR</Button>{' '}</td>
+                          <td><Button variant="primary">EDITAR</Button>{' '}</td>
+                          <td><Button variant="primary">ASIGNAR</Button>{' '}</td>
+                          <td><Button variant="primary">EDITAR</Button>{' '}</td>
+                          <td><Button variant="primary">VER</Button>{' '}</td>
+                          <td>{value.inicio.substring(0, 10)}</td>
+                          <td>{value.termino.substring(0, 10)}</td>
+                          <td>{value.estado}</td>
+
+                        </>}
+
+
+                    </tr>
+                  </>
+                })}
               </tbody>
             </Table>
           </div>
