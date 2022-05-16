@@ -56,6 +56,13 @@ const VistaGeneral = () => {
         setDirContext(e.target.value)
         setLocal(e.target.value)
 
+    }
+
+    const handleClickGestionar = async(e) => {
+
+        setDirContext(e.target.value)
+        setLocal(e.target.value)
+        history.push("/usuariosdireccion")
 
     }
     return (
@@ -88,7 +95,7 @@ const VistaGeneral = () => {
                                     <th>Nombre de direccion</th>
                                     <th>Gestionar Expediente</th>
                                     <th>Expediente Actual</th>
-                                    <th>Gestionar Usuario usuario</th>
+                                    <th>Gestionar Usuarios</th>
 
                                 </tr>
                             </thead>
@@ -100,7 +107,7 @@ const VistaGeneral = () => {
                                         <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                         <td><Link to={{ pathname: "/historialsolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickHistorial} >Gestionar</Button></Link>{' '}</td>
                                         <td><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickActual} >Ver</Button>{' '}</td>
-                                        <td><Button variant="primary">Gestionar</Button>{' '}</td>
+                                        <td><Button variant="primary" value={value.id_direccion}onClick={handleClickGestionar}>Gestionar</Button>{' '}</td>
 
                                     </tr>
                                     </>
