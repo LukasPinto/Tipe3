@@ -7,42 +7,34 @@ import { useState, useEffect } from 'react';
 import estadoSolicitud from '../services/estadoSolicitud.service';
 import { useLocalStorage } from './custom/useLocalStorage';
 import listaPuntos from '../services/listaPuntos.service';
+import solicitudes from '../services/solicitudes.sevice';
 const PuntosSolicitud = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
+  const [estado, setEstado] = useLocalStorage('estado', '')
+  const [solicitud,setSolicitud] = useLocalStorage('solicitud','')
   const [puntos, setPuntos] = useState([])
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
-  const [estado, setEstado] = useLocalStorage('estado', '')
+
   useEffect(() => {
     
-    listadoPuntos(local)
+    listaPuntos(solicitud)
       .then((Response) => {
-        
-        if(Response.data.lenght !==0){
+          console.log(solicitud)
           setPuntos(Response.data)
-        }
+        
         setActualizar(!actualizar)
       }).
       catch(() => {
+        setPuntos([])
         alert("error")
       })
   }, [traerDatos])
 
-  useEffect(()=>{
-    if(estado !=="false"){
-      estadoSolicitud(estado)
-      .then((Response)=>{
-        setEstado(Response.data.estado)
-        console.log(Response)
-      }).catch(()=>{
-
-      })
-    }
-   
-  },[])
+ 
   return (
     <>
-
+ 
       {(local === '') ? (<Redirect to='/vistageneral'></Redirect>) :
         <>
 

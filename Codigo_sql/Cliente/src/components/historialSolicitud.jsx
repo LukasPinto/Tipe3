@@ -7,32 +7,32 @@ import { Link } from 'react-router-dom';
 import listaPuntos from '../services/listaPuntos.service'
 const HistorialSolicitud = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
+  const [estado, setEstado] = useLocalStorage('estado', '')
+  const [solicitud,setSolicitud] = useLocalStorage('solicitud','')
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
   const [listaSolicitud, setLista] = useState([])
-  const [estado, setEstado] = useLocalStorage('estado', '')
+ 
   useEffect(() => {
     solicitudes(local)
       .then((Response) => {
 
         setLista(Response.data)
+
         setActualizar(!actualizar)
       }).
       catch(() => {
-        alert("error")
+        setEstado("false")
       })
   }, [traerDatos])
 
   const handleClick = async(e) => {
-
-    setLocal(e.target.value)
+    
     await listaPuntos(e.target.value)
     .then((Response) => {
-        setEstado(Response.data[0].id_solicitud)
-
+      setEstado(Response.data[0].estado)
       }).
       catch((err) => {
-
         setEstado("false")
 
       })   
@@ -41,7 +41,7 @@ const HistorialSolicitud = (props) => {
 
   return (
     <>
-
+  {console.log(solicitud)}
       <div>
         <p class="cajita1">Historial de solicitud</p>
       </div>
@@ -69,8 +69,8 @@ const HistorialSolicitud = (props) => {
                   <td>{value.fecha_inicio.substring(0,10)}</td>
                   <td>{value.fecha_termino ? <></>:value.fecha_termino}</td>
                   <td>Cuenta publica de {value.nombre_direccion} - {value.fecha_inicio.substring(0,10)} </td>
-                  <td>{value.estado.toUpperCase()}</td>
-                  <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
+                  <td>{value.estado.toUpperCase()}{value.id_solicitud}</td>
+                  <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_solicitud" value={value.id_solicitud} onClick={handleClick} >Ver</Button></Link>{' '}</td>
                 </tr>
               </>
             })}

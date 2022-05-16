@@ -7,19 +7,21 @@ import { DirContext, DireccionContext } from '../context/dirContext';
 import { useLocalStorage } from './custom/useLocalStorage';
 import estadoSolicitud from '../services/estadoSolicitud.service';
 import listadoPuntos from '../services/puntosDireccion.service';
+import solicitudes from '../services/solicitudes.sevice';
 const VistaGeneral = () => {
     const [local, setLocal] = useLocalStorage('direccion', '')
+    const [solicitud,setSolicitud] = useLocalStorage('solicitud','')
+    const [estado, setEstado] = useLocalStorage('estado', '')
     const { DirContext, setDirContext } = useContext(DireccionContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
-    const [estado, setEstado] = useLocalStorage('estado', '')
+    
     useEffect(() => {
 
         direccionesService()
             .then((Response) => {
                 setDirecciones(Response.data)
-                console.log(direcciones)
                 setActualizar(!actualizar)
             }).
             catch(() => {
@@ -27,29 +29,33 @@ const VistaGeneral = () => {
             })
     }, [traerDatos])
 
-    const handleClick = async(e) => {
+    const handleClickActual = async(e) => {
 
         setDirContext(e.target.value)
         setLocal(e.target.value)
         await listadoPuntos(e.target.value)
         .then((Response) => {
-            setEstado(Response.data[0].id_solicitud)
+            setSolicitud(Response.data[0].id_solicitud)
+            setEstado(Response.data[0].estado)
           }).
           catch((err) => {
-
             setEstado("false")
 
           })
           
-          
+   
 
-        
+    }
+    const handleClickHistorial = async(e) => {
+
+        setDirContext(e.target.value)
+        setLocal(e.target.value)
+
 
     }
     return (
         <>
 
-        {console.log(estado)}
 
             <div className="bg-light" style={{ backgroundColor: 'red' }}>
                 <Form >
@@ -87,8 +93,8 @@ const VistaGeneral = () => {
                                 {direcciones.map((value, key) => {
                                     return <><tr>
                                         <td key={value.id_direccion}>{value.nombre_direccion}</td>
-                                        <td><Link to={{ pathname: "/historialsolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Gestionar</Button></Link>{' '}</td>
-                                        <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
+                                        <td><Link to={{ pathname: "/historialsolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickHistorial} >Gestionar</Button></Link>{' '}</td>
+                                        <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickActual} >Ver</Button></Link>{' '}</td>
                                         <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                     </tr>
