@@ -7,7 +7,7 @@ import direccionesService from '../services/listadoDirecciones.service';
 import crearUsuario from '../services/crearUsuario.service';
 import { UserContext } from '../context/userContext';
 import { useLocalStorage } from './custom/useLocalStorage';
-
+import DatosUsuario from '../services/datosUsuario'
 const ModificarCuenta = (props) => {
     const [userDireccion,setUserDireccion] = useLocalStorage('usuario_direccion','')
     const { userState} = useContext(UserContext)
@@ -15,6 +15,8 @@ const ModificarCuenta = (props) => {
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
     useEffect(() => {
+        
+   
         direccionesService()
             .then((Response) => {
 
@@ -25,6 +27,8 @@ const ModificarCuenta = (props) => {
             catch(() => {
                 alert("error")
             })
+
+        
     }, [traerDatos])
 
 
@@ -126,7 +130,7 @@ const ModificarCuenta = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <btn variant="outline-success" type="button" className="botoncito1 button" >Crear usuario</btn>{' '}
+                    <button variant="outline-success" type="button" className="botoncito1 button" >Crear usuario</button>{' '}
 
                 </div>
             </Form>
