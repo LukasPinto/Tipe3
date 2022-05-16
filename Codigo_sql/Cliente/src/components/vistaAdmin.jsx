@@ -1,19 +1,21 @@
 import React, { useContext } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {  DirContext,DireccionContext } from '../context/dirContext';
+import { DirContext, DireccionContext } from '../context/dirContext';
 import { useLocalStorage } from './custom/useLocalStorage';
-
+import estadoSolicitud from '../services/estadoSolicitud.service';
+import listadoPuntos from '../services/puntosDireccion.service';
 const VistaGeneral = () => {
-    const [local,setLocal] = useLocalStorage('direccion','')
-    const {DirContext,setDirContext} = useContext(DireccionContext)
+    const [local, setLocal] = useLocalStorage('direccion', '')
+    const { DirContext, setDirContext } = useContext(DireccionContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
-    
+    const [estado, setEstado] = useLocalStorage('estado', '')
     useEffect(() => {
+
         direccionesService()
             .then((Response) => {
                 setDirecciones(Response.data)
@@ -24,19 +26,32 @@ const VistaGeneral = () => {
                 alert("error")
             })
     }, [traerDatos])
-    
-const handleClick = (e)=>{
 
-         setDirContext(e.target.value)
-         setLocal(e.target.value)
+    const handleClick = async(e) => {
 
-}
+        setDirContext(e.target.value)
+        setLocal(e.target.value)
+        await listadoPuntos(e.target.value)
+        .then((Response) => {
+            setEstado(Response.data[0].id_solicitud)
+          }).
+          catch((err) => {
+
+            setEstado("false")
+
+          })
+          
+          
+
+        
+
+    }
     return (
         <>
 
+        {console.log(estado)}
 
-            
-            <div className="bg-light"  style={{backgroundColor: 'red'}}>
+            <div className="bg-light" style={{ backgroundColor: 'red' }}>
                 <Form >
 
                     <Form.Group className="col-md-7 offset-md-1">
@@ -67,17 +82,17 @@ const handleClick = (e)=>{
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                
-                                {direcciones.map((value,key)=>{ 
-                                    return<><tr>
-                                    <td key={value.id_direccion}>{value.nombre_direccion}</td>
-                                    <td><Link to={{pathname:"/historialsolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Gestionar</Button></Link>{' '}</td>
-                                    <td><Link to={{pathname:"/puntossolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
-                                </tr>
-                                </>
+
+                                {direcciones.map((value, key) => {
+                                    return <><tr>
+                                        <td key={value.id_direccion}>{value.nombre_direccion}</td>
+                                        <td><Link to={{ pathname: "/historialsolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Gestionar</Button></Link>{' '}</td>
+                                        <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
+                                        <td><Button variant="primary">Gestionar</Button>{' '}</td>
+
+                                    </tr>
+                                    </>
                                 })}
                             </tbody>
                         </Table>

@@ -137,4 +137,35 @@ router.post("/solicitud/direcciones",verify,(req,respuesta)=>{
 
 
 })
+
+
+router.post("/estado/solicitud",verify,(req,respuesta)=>{
+    console.log(req.body)
+    const solicitud = req.body.id_solicitud;
+    conn.query(`SELECT * from solicitud where id_solicitud = ?`,[solicitud],(err,res)=>{
+        console.log(err,res)
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send("error")
+        }
+    })
+
+})
+
+router.post("/puntos/solicitud",verify,(req,respuesta)=>{
+    console.log(req.body)
+    const solicitud = req.body.id_solicitud;
+    conn.query(`select * from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send("error")
+        }
+
+    })
+
+})
 module.exports = router;
