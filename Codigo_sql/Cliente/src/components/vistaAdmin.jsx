@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
 import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const VistaGeneral = (props) => {
+import {  DirContext,DireccionContext } from '../context/dirContext';
+import { useLocalStorage } from './custom/useLocalStorage';
+
+const VistaGeneral = () => {
+    const [local,setLocal] = useLocalStorage('direccion','')
+    const {DirContext,setDirContext} = useContext(DireccionContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
+    
     useEffect(() => {
         direccionesService()
             .then((Response) => {
-
                 setDirecciones(Response.data)
                 console.log(direcciones)
                 setActualizar(!actualizar)
@@ -19,9 +24,18 @@ const VistaGeneral = (props) => {
                 alert("error")
             })
     }, [traerDatos])
+    
+const handleClick = (e)=>{
 
+         setDirContext(e.target.value)
+         setLocal(e.target.value)
+
+}
     return (
         <>
+
+
+            
             <div className="bg-light"  style={{backgroundColor: 'red'}}>
                 <Form >
 
@@ -58,8 +72,8 @@ const VistaGeneral = (props) => {
                                 {direcciones.map((value,key)=>{ 
                                     return<><tr>
                                     <td key={value.id_direccion}>{value.nombre_direccion}</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
-                                    <td><Link to={{pathname:"/puntossolicitud", state: {id_direccion:value.id_direccion,nombre_direccion:value.nombre_direccion}}}><Button variant="primary">Ver</Button></Link>{' '}</td>
+                                    <td><Link to={{pathname:"/historialsolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Gestionar</Button></Link>{' '}</td>
+                                    <td><Link to={{pathname:"/puntossolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                 </tr>
@@ -71,6 +85,7 @@ const VistaGeneral = (props) => {
                 </Form>
                 <Button variant="primary">Crear direccion</Button>{' '}
             </div>
+
         </>
 
     );

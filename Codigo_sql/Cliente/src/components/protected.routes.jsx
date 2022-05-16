@@ -13,11 +13,14 @@ import BandejaIntentos from "./bandejaIntentos";
 import HistorialSolicitud from "./historialSolicitud";
 import PuntosSolicitud from "./puntosSolicitud";
 import ListadoUsuarios from "./listadoUsuarios";
+import { DireccionContext, DirContext } from "../context/dirContext";
 const PrivateRoutes = (props) => {
   const { userState } = useContext(UserContext)
+  const {direccion,setDireccion} = useContext(DireccionContext)
   console.log(userState)
   return (<BrowserRouter>
     <Switch>
+      <DirContext>
       {userState.cargo === 1 && (<Route exact path="/crearusuario" component={CrearUsuario} />)}
       {userState.cargo === 1 && (<Route exact path="/modificarusuario" component={ModificarUsuario} />)}
       {userState.cargo === 1 && (<Route exact path="/historialsolicitud" component={HistorialSolicitud} />)}
@@ -27,13 +30,14 @@ const PrivateRoutes = (props) => {
       {userState.cargo === 1 && ( <Route exact path="/puntossolicitud" component={PuntosSolicitud} /> )}
       
       {userState.cargo === 1 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
+
       {userState.cargo === 2 && ( <Route exact path="/solicitarsubalterno" component={SolicitarSubAlterno} /> )}
       {userState.cargo === 2 && ( <Route exact path="/bandejaintentos" component={BandejaIntentos} /> )}
       
       {userState.cargo === 3 && ( <Route exact path="/bandejaintentos" component={BandejaIntentos} /> )}
       {(userState.cargo ===0) && (<Route to="/login" component={InicioSesion} />)}
       
-      
+      </DirContext>
     </Switch>
   </BrowserRouter>
   );
