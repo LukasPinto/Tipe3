@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { DirContext, DireccionContext } from '../context/dirContext';
 import { useLocalStorage } from './custom/useLocalStorage';
 import estadoSolicitud from '../services/estadoSolicitud.service';
@@ -16,7 +16,7 @@ const VistaGeneral = () => {
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
-    
+    const history = useHistory()
     useEffect(() => {
 
         direccionesService()
@@ -31,16 +31,21 @@ const VistaGeneral = () => {
 
     const handleClickActual = async(e) => {
 
-        setDirContext(e.target.value)
-        setLocal(e.target.value)
+
+          setLocal(e.target.value)
         await listadoPuntos(e.target.value)
         .then((Response) => {
             setSolicitud(Response.data[0].id_solicitud)
             setEstado(Response.data[0].estado)
+            history.push("/puntossolicitud")
           }).
           catch((err) => {
+            
+            setSolicitud("")
             setEstado("false")
+            history.push("/puntossolicitud")
 
+            
           })
           
    
@@ -55,7 +60,7 @@ const VistaGeneral = () => {
     }
     return (
         <>
-
+    {console.log(direcciones)}
 
             <div className="bg-light" style={{ backgroundColor: 'red' }}>
                 <Form >
@@ -94,7 +99,7 @@ const VistaGeneral = () => {
                                     return <><tr>
                                         <td key={value.id_direccion}>{value.nombre_direccion}</td>
                                         <td><Link to={{ pathname: "/historialsolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickHistorial} >Gestionar</Button></Link>{' '}</td>
-                                        <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickActual} >Ver</Button></Link>{' '}</td>
+                                        <td><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClickActual} >Ver</Button>{' '}</td>
                                         <td><Button variant="primary">Gestionar</Button>{' '}</td>
 
                                     </tr>

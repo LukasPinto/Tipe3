@@ -17,16 +17,17 @@ const PuntosSolicitud = (props) => {
   const [traerDatos, setTraerDatos] = useState(true)
 
   useEffect(() => {
-
-    listaPuntos(solicitud)
+    
+     listaPuntos(solicitud)
       .then((Response) => {
-        console.log(solicitud)
+        console.log(Response)
         setPuntos(Response.data)
 
         setActualizar(!actualizar)
       }).
       catch(() => {
         setPuntos([])
+        
         alert("error")
       })
   }, [traerDatos])
@@ -34,7 +35,7 @@ const PuntosSolicitud = (props) => {
 
   return (
     <>
-      {console.log(puntos)}
+      {console.log(solicitud)}
 
       {(local === '') ? (<Redirect to='/vistageneral'></Redirect>) :
         <>
