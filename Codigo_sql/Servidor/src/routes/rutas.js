@@ -203,4 +203,54 @@ router.post("/direccion/usuario/borrar",verify,(req,respuesta)=>{
     }
 
 })
+
+router.post("/direccion/usuario/editar",verify,(req,respuesta)=>{
+    const {id_cargo_admin,id_direccion,
+    id_cargo,
+    nombre,
+    rut,
+    correo,
+    clave,
+    id_empl_direccion} = req.body;
+    console.log(req.body)
+    if (id_cargo_admin == 1){
+        conn.query(`UPDATE usuario_direccion SET id_direccion = ?, id_cargo = ?, nombre = ?, rut = ?, correo = ?, clave = ? WHERE usuario_direccion.id_empl_direccion = ? `,[id_direccion,id_cargo,nombre,rut,correo,clave,id_empl_direccion], (err,res) =>{
+            if(!err){
+                console.log(res)
+                respuesta.send(res)
+            }
+            else{
+                console.log("error")
+                respuesta.json("error")
+            }
+    
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+
+
+
+router.post("/direccion/usuario",verify,(req,respuesta)=>{
+    const {id_cargo,id_empl_direccion} = req.body;
+  
+    if (id_cargo == 1){
+        conn.query(`SELECT * FROM usuario_direccion where id_empl_direccion = ? `,[id_empl_direccion], (err,res) =>{
+            if(!err){
+                respuesta.send(res)  
+            }
+            else{
+                respuesta.json("error")
+            }
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+/*UPDATE `usuario_direccion` SET `rut` = '2518294-3' WHERE `usuario_direccion`.`id_empl_direccion` = 1 */
 module.exports = router;

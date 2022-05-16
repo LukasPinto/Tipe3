@@ -12,9 +12,9 @@ const UsuarioDireccion = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
-  const [usuario,setUsuario] = useState()
+  const [usuario,setUsuario] = useLocalStorage('usuario_direccion','')
   const { userState, setUserState } = useContext(UserContext)
-
+  const history = useHistory()
   useEffect(() => {
 
     usuariosPorDireccion(local)
@@ -38,6 +38,10 @@ const UsuarioDireccion = (props) => {
         console.log(err)
       })
   }
+  const editarUsuario = async(e) =>{
+    setUsuario(e.target.value)
+  history.push("/modificarusuario")
+}
 
 
   return (
@@ -68,7 +72,7 @@ const UsuarioDireccion = (props) => {
                     <td>{value.descripcion}</td>
                     <td>{value.correo}</td>
                     <td>{value.nombre}</td>
-                    <td><Link to={{pathname:'/modificarusuario'}}><button className="boton-centro button" type="button">Editar</button>{' '}</Link></td>
+                    <td><button className="boton-centro button" type="button" value={value.id_empl_direccion} onClick={editarUsuario}>Editar</button>{' '}</td>
 
                     <td><button className="botoncito1 button" variant="primary" name="id_empl_solicitud" value={value.id_empl_direccion} onClick={eliminarUsuario} >Eliminar</button>{' '}</td>
                   </tr>
