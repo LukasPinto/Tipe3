@@ -1,56 +1,51 @@
 import React from 'react';
-import { Form, Button, Table, Badge } from 'react-bootstrap';
+import { Form, btn, Table, Badge } from 'react-bootstrap';
+import "./css/bandejaIntentos.css"
 
 const BandejaIntentos = (props) => {
     return (
         <>
-         <div className ="bg-light"  > 
-         <Form >
-            <div className ="bg-light link" >
-            <Badge bg="secondary">Vista usuario de Direccion</Badge>
-            
-           
-           
+        <div className ="contenedor04-2">   
+            <h3 className="outer-text02">Bandeja de intentos</h3>
             </div>
-            <Form.Group className="col-md-4 offset-md-10">
-                <Button variant="primary" type="submit" className="col-md-3">
+
+            <div className ="fondoTabla04"> 
+            <btn type="button" className="botoncito04 button" >
                         Ordenar
-                </Button>
-               
-            </Form.Group>
-            
+                </btn>               
+ 
             <div>
-            <Table striped bordered hover size="s">
-  <thead>
-    <tr>
-      <th>Nombre del punto</th>
-      <th>Numero de intentos</th>
-      <th>Observaciones</th>
-      <th>Estado</th>
-      <th>Detalle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Resumen de juicios</td>
-      <td>1</td>
-      <td>Se envian archivos solicitados</td>
-      <td>Rechazados</td>
-      <td><Button variant="primary">VER</Button>{' '}</td>
-    </tr>
-    <tr>
-      <td>Resumen de juicios</td>
-      <td>2</td>
-      <td>Se vuelve a enviar archivos solicitados</td>
-      <td>Pendiente</td>
-      <td><Button variant="primary">VER</Button>{' '}</td>
-    </tr>
-    
-  </tbody>
-</Table>
+              <Table className ="fondoTabla04"striped bordered hover size="s">
+                <thead>
+                  <tr>
+                    <th>Nombre del punto</th>
+                    <th>Numero de intentos</th>
+                    <th>Observaciones</th>
+                    <th>Estado</th>
+                    <th>Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Resumen de juicios</td>
+                    <td>1</td>
+                    <td>Se envian archivos solicitados</td>
+                    <td>Rechazados</td>
+                    <td><btn type="button" className="botoncito04 button" >VER</btn>{' '}</td>
+                  </tr>
+                  <tr>
+                    <td>Resumen de juicios</td>
+                    <td>2</td>
+                    <td>Se vuelve a enviar archivos solicitados</td>
+                    <td>Pendiente</td>
+                    <td><btn type="button" className="botoncito04 button" >VER</btn>{' '}</td>
+                  </tr>
+                  
+                </tbody>
+              </Table>
             </div>
-            </Form>
-            <Button variant="primary">Nuevo intento</Button>{' '}
+           
+            <btn type="button" className="botoncito04-2 button" >Nuevo intento</btn>{' '}
             </div>
         </>
         
