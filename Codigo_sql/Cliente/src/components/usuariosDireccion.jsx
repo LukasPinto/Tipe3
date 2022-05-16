@@ -59,7 +59,8 @@ const UsuarioDireccion = (props) => {
        
 <btn className="botoncito1 button" type="button">Crear usuario</btn>{' '}
 </div> 
-</div>           
+</div>   
+<div className='fondoTabla'></div>        
         </>
         
     );

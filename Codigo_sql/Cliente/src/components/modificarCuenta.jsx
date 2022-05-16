@@ -7,7 +7,8 @@ import { Form, Button, FormLabel } from 'react-bootstrap';
 const ModificarCuenta = (props) => {
     return (
         <>
-         <div className ="contenedor"  > 
+        <div className ="fondo" ></div>
+         <div className ="contenedor01"  > 
          <Form >
          <img className ='imagen'src={img1}/>
          <h5 className='outer-h5'>Modificar cuenta</h5>
@@ -42,9 +43,9 @@ const ModificarCuenta = (props) => {
             </div>    
                 <div className="row justify-content-center">
                     
-                    <Button type="submit" className="botoncito1">
+                    <btn type="submit" className="botoncito1 button">
                         Modificar usuario
-                    </Button>
+                    </btn>
                 </div>
                
             </Form>

@@ -70,7 +70,8 @@ const CrearCuenta = (props) => {
 
     return (
 
-        <div className="contenedor">
+        <div className="contenedorcito">
+
             <Form onSubmit={handleSubmit}>
                 <img className='imagen' src={img1} />
                 <h5 className='outer-h5'>Crear usuario</h5>
@@ -129,9 +130,9 @@ const CrearCuenta = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <Button variant="outline-success" type="submit" className="boton1" >
+                    <btn variant="outline-success" type="button" className="botoncito1 button" >
                         Crear usuario
-                    </Button>{' '}
+                    </btn>{' '}
 
                 </div>
             </Form>

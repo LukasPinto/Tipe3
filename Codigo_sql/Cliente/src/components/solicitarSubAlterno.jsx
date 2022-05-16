@@ -1,51 +1,49 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
-
+import { Form, Button,FormLabel } from 'react-bootstrap';
+import  img1 from './../assets/img/usuario.png';
+import "./css/solicitarSubAlterno.css"
 
 
 const SolicitarSubAlterno = (props) => {
     return (
         <>
-         <div className ="bg-secondary"  > 
+         <div className ="contenedor02"  > 
          <Form >
-     
+         <img className ='imagen02'src={img1}/>
+         <h5 className='outer-h5'>Solicitar Subalterno</h5>
             <div className="row justify-content-center">
-            <Form.Group className="mb-3 col col-md-3 mt-auto">
-                <Form.Label>Nombre Apellido</Form.Label>
-                <Form.Control type="text" name="edad"  />
-            </Form.Group>
-            <Form.Group className="mb-3 col col-md-3 mt-auto">
-                <Form.Label>Direccion</Form.Label>
-                <Form.Control type="text" name="edad"  />
-            </Form.Group>
-        </div>
-            <div className="row justify-content-center">
+          
+            <Form.Group className="mb-3 col col-md-8 mt-auto ">
+                <FormLabel className='outer-text02' >Nombre Apellido</FormLabel>
+                <Form.Control  className= "fondo-texto" type="text"  />
+                
+                <Form.Label className='outer-text'>Rut</Form.Label>
+                    <Form.Control type="text" className= "outer-control"  />
+                   
 
-                <Form.Group className="mb-3 col col-md-3 mt-auto">
-                    <Form.Label>Correo</Form.Label>
-                    <Form.Control type="email" name="edad"  />
-                </Form.Group>
-                <Form.Group className="mb-3 col col-md-3 mt-auto">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" name="edad"  />
-                </Form.Group>
-            </div>
-            <div className="row justify-content-center">
-            <Form.Group className="mb-3 col col-md-3 mt-auto">
-                    <Form.Label>Encargado</Form.Label>
-                    <Form.Select type="email" name="edad"  >
-                    <option>Seleccione el cargo del usuario</option>
-                    <option value="1">Usuario de direccion</option>
-                    <option value="2">Subalterno de direccion</option>
-                    <option value="3">Administrador</option>
-                    </Form.Select>
+                <Form.Label className='outer-text'>Direccion</Form.Label>
+                <Form.Control type="text" className= "outer-control"  />
+            
+
+                    <Form.Label className='outer-text'>Correo</Form.Label>
+                    <Form.Control className= "outer-control" type="email" />
+           
+              
+                    <Form.Label className='outer-text'>Contraseña</Form.Label>
+                    <Form.Control type="password" className= "outer-control"  />
+                   
+            
+            
+ 
+                    
+                    
                 </Form.Group>
             </div>    
                 <div className="row justify-content-center">
                     
-                    <Button variant="primary" type="submit" className="col-md-3">
-                        Solicitar subalterno de direccion
-                    </Button>
+                    <btn type="submit" className="botoncito03 button">
+                        Solicitar subalterno
+                    </btn>
                 </div>
                
             </Form>

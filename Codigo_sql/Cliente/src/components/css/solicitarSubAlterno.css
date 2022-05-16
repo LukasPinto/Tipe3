@@ -13,8 +13,6 @@
     
   }
   
-  
-  
   body, html, .App, #root, .outer {
     width: 100%;
     height: 40%;
@@ -51,7 +49,7 @@
     text-align:center;
     margin: 0;
     line-height: 2;
-    color: #000000;
+    color: #ffffff;
     padding-bottom: 10px;
     font-weight: bold;
    
@@ -74,8 +72,7 @@
   .forgot-password a {
     color: #d8dfe8;
   }
-  .contenedor01{
-    margin-top: 20px;
+  .contenedor02{
       border-radius: 2%;
       margin-left: 30%;
       margin-right: 30%;
@@ -83,28 +80,39 @@
       contain: content;
       background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
   }
-  .botoncito1 {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    width: 10cm;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
-  .outer-text{
+ 
+  .outer-text02{
       color: #ffffff;
   }
-  .outer-control{
-    background:linear-gradient(to right, #c2f0c1, #60bc7a, #93d38c)
+  .outer-control02{
+      background-color:rgba(0, 0, 0, 0.3);
   }
-  .imagen{
+  .imagen02{
       display:block;
       margin:auto;
       width: 150px;
       opacity: 0.3;
   }
-  .fondo-texto{
-      background:linear-gradient(to right, #c2f0c1, #60bc7a, #93d38c)
+  .button {
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  .botoncito03 {
+    background-color: #ddfaed; /* Green */
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+    border-radius: 8px;
+    height: 30px;
+    border: 1px solid #7dbb7f;
+    
   }

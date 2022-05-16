@@ -72,7 +72,7 @@ body, html, .App, #root, .outer {
 .forgot-password a {
   color: #d8dfe8;
 }
-.contenedor{
+.contenedorcito{
     border-radius: 2%;
     margin-left: 30%;
     margin-right: 30%;
@@ -101,4 +101,13 @@ body, html, .App, #root, .outer {
     margin:auto;
     width: 150px;
     opacity: 0.3;
+}
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
 }
