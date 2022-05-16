@@ -16,7 +16,6 @@ const VistaGeneral = () => {
     useEffect(() => {
         direccionesService()
             .then((Response) => {
-
                 setDirecciones(Response.data)
                 console.log(direcciones)
                 setActualizar(!actualizar)
@@ -73,7 +72,7 @@ const handleClick = (e)=>{
                                 {direcciones.map((value,key)=>{ 
                                     return<><tr>
                                     <td key={value.id_direccion}>{value.nombre_direccion}</td>
-                                    <td><Button variant="primary">Gestionar</Button>{' '}</td>
+                                    <td><Link to={{pathname:"/historialsolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Gestionar</Button></Link>{' '}</td>
                                     <td><Link to={{pathname:"/puntossolicitud"}} ><Button variant="primary" name="id_direccion" value={value.id_direccion} onClick={handleClick} >Ver</Button></Link>{' '}</td>
                                     <td><Button variant="primary">Gestionar</Button>{' '}</td>
 

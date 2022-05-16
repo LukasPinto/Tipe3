@@ -107,7 +107,7 @@ router.post("/crearUsuario",verify,(req,respuesta) => {
 
 router.post("/puntodireccion",verify,(req,respuesta)=>{
     const direccion = req.body.id_direccion;
-    console.log(direccion)
+ 
     conn.query(`Select * FROM solicitud join puntos  on solicitud.id_solicitud = puntos.id_solicitud WHERE id_direccion = ? AND solicitud.estado = "pendiente" 
     ORDER BY fecha_inicio`,[direccion],(err,res)=>{
         if(!err){
@@ -122,4 +122,19 @@ router.post("/puntodireccion",verify,(req,respuesta)=>{
 
 })
 
+
+router.post("/solicitud/direcciones",verify,(req,respuesta)=>{
+    const direccion = req.body.id_direccion;
+    conn.query(`SELECT * FROM solicitud join direccion_municipal on solicitud.id_direccion = direccion_municipal.id_direccion where solicitud.id_direccion = ?`,[direccion],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+            console.log(res)
+        }
+        else{
+            respuesta.send("error")
+        }
+    })
+
+
+})
 module.exports = router;
