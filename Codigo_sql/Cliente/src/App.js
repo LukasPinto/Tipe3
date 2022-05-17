@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Axios from 'axios'
 import { Nav, Navbar, DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link ,useHistory} from "react-router-dom";
 import InicioSesion from './components/login';
 import { UserContext } from './context/userContext';
 import CrearUsuario from './components/crearCuenta'
@@ -15,7 +15,7 @@ import BandejaIntentos from './components/bandejaIntentos'
 import PrivateRoutes from './components/protected.routes'
 
 const App = () => {
-
+  const history = useHistory()
   const [userState, setUserState] = useState({
     correo: "",
     rut: 0,
@@ -61,7 +61,6 @@ const App = () => {
   }, [])
 
 
-
   return (
 
     <UserContext.Provider value={{ userState, setUserState }}>
@@ -84,8 +83,9 @@ const App = () => {
 
                   <>
                     {userState.cargo === 1 && (<Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6   " to="/inicio" >Solicitudes de usuario</Link>)}
+                    {userState.cargo === 1 && ( <Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6   " to="/vistageneral" >Inicio</Link>)}
                     {userState.cargo === 2 && (<Link className="btn btn-light rounded border me-3 pe-4 ps-4 fs-6   " to="/inicio" >Solicitar Subalterno</Link>)}
-                    <Link className="btn btn-light rounded border me-3 pe-3 ps-3 fs-6   " to="/login" onClick={logOut} >Cerrar sesión</Link>
+                    <Link className="btn btn-light rounded border me-3 p    e-3 ps-3 fs-6   " to="/login" onClick={logOut} >Cerrar sesión</Link>
                   </>
                   : <></>}
               </Nav>
