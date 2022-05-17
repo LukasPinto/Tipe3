@@ -8,12 +8,6 @@ import crearUsuario from '../services/crearUsuario.service';
 import { UserContext } from '../context/userContext';
 const CrearCuenta = (props) => {
 
-    /*const id_direccion = body.correo
-    const id_cargo = body.clave
-    const nombre = body.nombre
-    const rut = body.rut
-    const correo = body.correo
-    const clave = body.clave*/
     const { userState} = useContext(UserContext)
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)

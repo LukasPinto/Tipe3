@@ -13,6 +13,7 @@ import BandejaIntentos from "./bandejaIntentos";
 import HistorialSolicitud from "./historialSolicitud";
 import PuntosSolicitud from "./puntosSolicitud";
 import ListadoUsuarios from "./listadoUsuarios";
+import ResumenJuicios from "./subidaArchivo";
 import { DireccionContext, DirContext } from "../context/dirContext";
 const PrivateRoutes = (props) => {
   const { userState } = useContext(UserContext)
@@ -27,8 +28,12 @@ const PrivateRoutes = (props) => {
       {userState.cargo === 1 && ( <Route exact path="/listadodirecciones" component={ListadoDirecciones} />)}
       {userState.cargo === 1 && ( <Route exact path="/listadousuarios" component={ListadoUsuarios} />)}
       {userState.cargo === 1 && ( <Route exact path="/usuariosdireccion" component={UsuarioDireccion} /> )}
-      {userState.cargo === 1 && ( <Route exact path="/puntossolicitud" component={PuntosSolicitud} /> )}   
+
+
+      {userState.cargo === 1 && ( <Route exact path="/puntossolicitud" component={PuntosSolicitud} /> )}
+
       {userState.cargo === 1 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
+      {userState.cargo === 1 && ( <Route exact path="/subidaArchivo" component={ResumenJuicios} /> )}
 
       {userState.cargo === 2 && ( <Route exact path="/solicitarsubalterno" component={SolicitarSubAlterno} /> )}
       {userState.cargo === 2 && ( <Route exact path="/bandejaintentos" component={BandejaIntentos} /> )}

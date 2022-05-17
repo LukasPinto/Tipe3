@@ -1,0 +1,96 @@
+.caja2 h2{
+    align-items: center;
+    
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
+    color: #000;
+    
+
+}
+.caja2 h4{
+    background-color:#c0cde1 ;
+    border: right 10px;
+    font-size: 20px;
+    display: flex;
+   flex-direction: column;
+    color: #000;    
+}
+.caja2 h5{
+    background-color:#c0cde1 ;
+    font-size: 20px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    color: #000;   
+    
+}
+body{
+    display: flex;
+    height: 10px;
+    justify-content: center;
+    
+}
+.drop-area{
+    background-color: #ddfaed;
+    border: 5px dashed #ddd;
+    height: 200px;
+    width: 700px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.drop-area.active{
+    background-color: #b8d4fe;
+    color: black;
+    border: 2px dashed #618ac9;
+}
+.drop-area h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #000;
+
+}
+.drop-area span{
+    font-size: 25px;
+    color: #000;
+
+}
+.drop-area input{
+    padding: 10px 25px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    background-color: #5256ad;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+}
+.file-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: solid 1px #ddd;
+    
+}
+
+#preview{
+    margin-top: 10px;
+
+}
+.status-text{
+    padding: 0 10px;
+
+}
+.succes{
+    color: #52ad5a;
+
+}
+.failure{
+    color: #ff0000;
+
+}

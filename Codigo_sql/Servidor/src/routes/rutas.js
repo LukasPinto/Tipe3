@@ -109,7 +109,7 @@ router.post("/puntodireccion",verify,(req,respuesta)=>{
     const direccion = req.body.id_direccion;
  
     conn.query(`Select * FROM solicitud join puntos  on solicitud.id_solicitud = puntos.id_solicitud WHERE id_direccion = ? AND solicitud.estado = "pendiente" 
-    ORDER BY fecha_inicio`,[direccion],(err,res)=>{
+ORDER BY fecha_inicio`,[direccion],(err,res)=>{ 
         if(!err){
             respuesta.send(res)
         }
@@ -155,9 +155,9 @@ router.post("/estado/solicitud",verify,(req,respuesta)=>{
 })
 
 router.post("/puntos/solicitud",verify,(req,respuesta)=>{
-    console.log(req.body)
+
     const solicitud = req.body.id_solicitud;
-    conn.query(`select * from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
+    conn.query(`select solicitud.id_solicitud,id_direccion,id_empl_municipal,fecha_inicio,puntos.estado ,id_punto,titulo,archivo,archivo_plantilla,inicio,termino from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
         if(!err){
             respuesta.send(res)
         }
@@ -168,4 +168,89 @@ router.post("/puntos/solicitud",verify,(req,respuesta)=>{
     })
 
 })
+
+
+router.post("/direccion/usuarios",verify,(req,respuesta)=>{
+    const id_direccion = req.body.id_direccion;
+    conn.query(`SELECT descripcion,correo,nombre,id_empl_direccion,cargo.id_cargo FROM usuario_direccion join cargo on cargo.id_cargo = usuario_direccion.id_cargo where id_direccion = ?`,[id_direccion],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send("error")
+        }
+
+    })
+
+})
+
+router.post("/direccion/usuario/borrar",verify,(req,respuesta)=>{
+    const {id_cargo,id_empl_direccion} = req.body;
+    console.log(req.body)
+    if (id_cargo == 1){
+        conn.query(`DELETE FROM usuario_direccion WHERE usuario_direccion.id_empl_direccion = ?`,[id_empl_direccion], (err,res) =>{
+            if(!err){
+                respuesta.send(res)
+            }
+            else{
+                respuesta.json("error")
+            }
+    
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+
+router.post("/direccion/usuario/editar",verify,(req,respuesta)=>{
+    const {id_cargo_admin,id_direccion,
+    id_cargo,
+    nombre,
+    rut,
+    correo,
+    clave,
+    id_empl_direccion} = req.body;
+    console.log(req.body)
+    if (id_cargo_admin == 1){
+        conn.query(`UPDATE usuario_direccion SET id_direccion = ?, id_cargo = ?, nombre = ?, rut = ?, correo = ?, clave = ? WHERE usuario_direccion.id_empl_direccion = ? `,[id_direccion,id_cargo,nombre,rut,correo,clave,id_empl_direccion], (err,res) =>{
+            if(!err){
+                console.log(res)
+                respuesta.send(res)
+            }
+            else{
+                console.log("error")
+                respuesta.json("error")
+            }
+    
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+
+
+
+router.post("/direccion/usuario",verify,(req,respuesta)=>{
+    const {id_cargo,id_empl_direccion} = req.body;
+  
+    if (id_cargo == 1){
+        conn.query(`SELECT * FROM usuario_direccion where id_empl_direccion = ? `,[id_empl_direccion], (err,res) =>{
+            if(!err){
+                respuesta.send(res)  
+            }
+            else{
+                respuesta.json("error")
+            }
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+/*UPDATE `usuario_direccion` SET `rut` = '2518294-3' WHERE `usuario_direccion`.`id_empl_direccion` = 1 */
 module.exports = router;
