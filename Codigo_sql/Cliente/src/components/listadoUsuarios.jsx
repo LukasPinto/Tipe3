@@ -4,12 +4,10 @@ import "./css/listadoUsuarios.css"
 const ListadoUsuarios = (props) => {
     return (
         <>
-        <div>
-        <p class="cajita1">Historial de solicitud</p>
-        </div>
-        <div>
-        <p>Lista de usuarios de esta direccion</p>
-        </div>
+      <div className='contenedor3'>
+        <h1 className='tituloTabla'  >Punto</h1>
+        <h5 className='tituloTabla' >Usuarios para asignar</h5>
+      </div>
         <div className='contenedor'>
          <Table striped bordered hover size="sm">
   <thead>
@@ -38,7 +36,7 @@ const ListadoUsuarios = (props) => {
 </Table>
 </div>
 <div>
-        <p>Asignado al punto</p>
+        <h5 className='tituloTabla'>Asignado al punto</h5>
         </div>
 <div className='contenedor'>
 <Table striped bordered hover size="sm">
