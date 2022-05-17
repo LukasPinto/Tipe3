@@ -1,0 +1,39 @@
+* .boton-centro {
+    background-color: #153d2b;
+    /* Green */
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+    border-radius: 8px;
+    height: 30px;
+    border: 1px solid #7dbb7f;
+}
+
+.fondoTabla {
+
+    background-color:#7dbb7f;
+
+
+}
+
+.button {
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+  }
+
+
+.algo {
+    padding: 10px;
+    background-color: aliceblue;
+  
+  }
