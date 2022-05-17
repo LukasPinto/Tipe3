@@ -7,18 +7,19 @@ import listadoPuntos from '../services/puntosDireccion.service';
 import { useState, useEffect } from 'react';
 
 import { useLocalStorage } from './custom/useLocalStorage';
-
+import listaPuntos from '../services/listaPuntos.service';
 
 
 const PuntosSolicitud = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
+  const [solicitud,setSolicitud] =useLocalStorage('solicitud','')
   const [puntos, setPuntos] = useState([])
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
 
   useEffect(() => {
 
-    listadoPuntos(local)
+    listaPuntos(solicitud)
       .then((Response) => {
         setPuntos(Response.data)
         setActualizar(!actualizar)

@@ -4,35 +4,48 @@ import "./css/subidaArchivo.css"
 
 
 const ResumenJuicios = (props) => {
-    const [archivos, setArchivos]=useState(null);
-    const subirArchivos=e=>{
+    const [archivos, setArchivos]=useState([]);
+    
+    const subirArchivos=async e=>{
+       
+        await setArchivos([...archivos,...e.target.files])
+        //console.log(e.target.files)
     }
    
     return (
     <>
+    {console.log(archivos)}
         <div>
             <p class="cajita1">Subida de Archivos</p>
         </div>
         <div className='caja2'>
-            
-            <h4>Titulo del Archivo:  <input type="text" name="titulo" width="200px"/></h4>
-            <h5>Descripcion del Archivo: <input className ="t1" name="descripcion"/></h5>
-        </div>
-        
-        <body>
-            <h2 className='col col-md-3 row justify-content-center'>Adjuntar Archivos: </h2>
-                <div className="drop-area">
+            <Form>
+                <Form.Label>Titulo del Punto</Form.Label>
+                <Form.Control className="outer-control" type="text" name='titulo' />
+                <Form.Label>Descripcion</Form.Label>
+                <Form.Control className="outer-control" type="text" name='titulo' />
+                <Form.Label>Tipo de archivo</Form.Label>
+                <Form.Control className="outer-control" type="text" name='titulo' />
+                <Form.Label>Tipo de archivo</Form.Label>
+
                 
-                    <h2> Arrastra</h2>
-                    <span>O</span>
-                    <input type="file" name id="input-file" multiple onChange={(e)=>subirArchivos(e.targaet.files)} />
-                </div>
+                    
+                    <Form.Control className="drop-area" type="file"   multiple placeholder="Arrastre o suba un archivo" name="archivo"  onChange={subirArchivos}> 
+                    </Form.Control>
+ 
+                <button variant="outline-success" type="submit" className="botoncito1 button" multiple>Crear punto</button>
+            
+            </Form>
+            
+        </div>
+
+                
                
               
             
             
              
-        </body>
+
 
        
     </>
