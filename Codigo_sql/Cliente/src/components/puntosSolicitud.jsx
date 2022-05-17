@@ -1,7 +1,7 @@
 import React, { useContext, Component } from 'react';
 import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
-import "./css/puntossolicitud.css"
+import "./css/puntosSolicitud.css"
 import { Redirect, useLocation } from 'react-router-dom';
 import listadoPuntos from '../services/puntosDireccion.service';
 import { useState, useEffect } from 'react';
