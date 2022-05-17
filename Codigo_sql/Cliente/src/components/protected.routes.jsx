@@ -28,7 +28,10 @@ const PrivateRoutes = (props) => {
       {userState.cargo === 1 && ( <Route exact path="/listadodirecciones" component={ListadoDirecciones} />)}
       {userState.cargo === 1 && ( <Route exact path="/listadousuarios" component={ListadoUsuarios} />)}
       {userState.cargo === 1 && ( <Route exact path="/usuariosdireccion" component={UsuarioDireccion} /> )}
+
+
       {userState.cargo === 1 && ( <Route exact path="/puntossolicitud" component={PuntosSolicitud} /> )}
+
       {userState.cargo === 1 && ( <Route exact path="/vistageneral" component={VistaGeneral} /> )}
       {userState.cargo === 1 && ( <Route exact path="/subidaArchivo" component={ResumenJuicios} /> )}
 
