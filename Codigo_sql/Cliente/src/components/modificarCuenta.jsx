@@ -7,16 +7,34 @@ import direccionesService from '../services/listadoDirecciones.service';
 import crearUsuario from '../services/crearUsuario.service';
 import { UserContext } from '../context/userContext';
 import { useLocalStorage } from './custom/useLocalStorage';
-import DatosUsuario from '../services/datosUsuario'
+import  DatosUsuario  from "../services/datosUsuario.service";
+import modificarUsuario from '../services/modificarUsuario.service';
 const ModificarCuenta = (props) => {
     const [userDireccion,setUserDireccion] = useLocalStorage('usuario_direccion','')
     const { userState} = useContext(UserContext)
     const [direcciones, setDirecciones] = useState([])
+    const [userData,setUserData] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
+    const [body, setBody] =
+    useState({
+        id_direccion: "",
+        id_cargo: "",
+        nombre: "",
+        rut: "",
+        correo: "",
+        clave: ""
+    });
     useEffect(() => {
-        
-   
+        DatosUsuario(userState.cargo,userDireccion)
+        .then((Response) => {
+
+            setBody(Response.data[0])
+            
+        }).
+        catch(() => {
+            alert("error")
+        })
         direccionesService()
             .then((Response) => {
 
@@ -32,35 +50,21 @@ const ModificarCuenta = (props) => {
     }, [traerDatos])
 
 
-    const [body, setBody] =
-        useState({
-            id_direccion: "",
-            id_cargo: "",
-            nombre: "",
-            rut: "",
-            correo: "",
-            clave: ""
-        });
+
     const handleChange = async (e) => {
         await setBody({
             ...body,
             [e.target.name]: e.target.value
         })
-        console.log(body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave)
+
     }
 
     const handleSubmit = (e) => {
+        console.log(userState.cargo,body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave,body.id_empl_direccion)
         e.preventDefault();
-        crearUsuario(body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave,userState.cargo)
+        modificarUsuario(userState.cargo,body.id_direccion, body.id_cargo, body.nombre, body.rut, body.correo, body.clave,body.id_empl_direccion)
             .then((Response) => {
-                console.log(Response)
-                if (Response.data.message) {
-                    alert("error")
-                }
-                else {
-                    console.log(Response.data)
-                    alert("Usuario creado exitosamente")
-                }
+                alert("Usuario Modificado Exitosamente")
             })
 
             .catch(() => {
@@ -69,7 +73,7 @@ const ModificarCuenta = (props) => {
     }
 
     return (
-
+<>
         <div className="contenedorcito">
 
             <Form onSubmit={handleSubmit}>
@@ -130,13 +134,13 @@ const ModificarCuenta = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <button variant="outline-success" type="button" className="botoncito1 button" >Crear usuario</button>{' '}
+                    <button variant="outline-success" type="submit" className="botoncito1 button" >Modificar Usuario</button>{' '}
 
                 </div>
             </Form>
         </div>
 
-
+        </>
     );
 };
 
