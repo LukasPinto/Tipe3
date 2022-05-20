@@ -5,6 +5,18 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const { verify } = require('../middlewares/Auth');
 const { application } = require('express');
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req,file,cb) =>{
+        cb(null,'./archivos')
+    },
+    filename:(req,file,cb)=>{
+        const ext = file.originalname.split('.').pop();
+        const fileName = Date.now();
+        cb(null,`${file.originalname.split('.')[0]}-${fileName}.${ext}`)
+    }
+})
+const upload = multer({storage});
 
 router.post('/login', (req, respuesta) => {
     const { correo, clave } = req.body;
@@ -252,5 +264,21 @@ router.post("/direccion/usuario",verify,(req,respuesta)=>{
     }
 
 })
-/*UPDATE `usuario_direccion` SET `rut` = '2518294-3' WHERE `usuario_direccion`.`id_empl_direccion` = 1 */
+
+
+/*subida de archivos*/
+router.post('/upload',upload.array('files'),verify,(req,respuesta)=>{
+    conn.query(`SELECT * FROM usuario_direccion `, (err,res) =>{
+        console.log(req.body);
+        if(!err){
+           
+            respuesta.send("archivo subido exitosamente")  
+        }
+        else{
+            respuesta.json("error")
+        }
+    }) 
+    
+    
+})
 module.exports = router;

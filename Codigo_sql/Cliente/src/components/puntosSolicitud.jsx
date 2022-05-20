@@ -2,7 +2,7 @@ import React, { useContext, Component } from 'react';
 import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import "./css/puntosSolicitud.css"
-import { Redirect, useLocation } from 'react-router-dom';
+import { Redirect, useLocation,Link } from 'react-router-dom';
 import listadoPuntos from '../services/puntosDireccion.service';
 import { useState, useEffect } from 'react';
 
@@ -113,7 +113,7 @@ const PuntosSolicitud = (props) => {
 
 
           <div>
-            <Button className='botoncito2'>Crear nuevo punto</Button>{' '}
+            <Link to={{ pathname: "/subidaarchivo" }}><Button className='botoncito2'>Crear nuevo punto</Button>{' '}</Link>
           </div>
         </>
 

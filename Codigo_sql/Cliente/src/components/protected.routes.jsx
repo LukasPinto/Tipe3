@@ -46,23 +46,5 @@ const PrivateRoutes = (props) => {
   </BrowserRouter>
   );
 };
-/*
-const PrivateRoute = ({ component: Component, estado, ...rest }) => {
-  const { userState, setUserState } = useContext(UserContext)
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        userState.cargo ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{ pathname: "/not-found", state: { from: props.location } }}
-          />
-        )
-      }
-    />
-  );
-};
-*/
+
 export default PrivateRoutes;
