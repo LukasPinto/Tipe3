@@ -6,6 +6,7 @@ require('dotenv').config();
 const { verify } = require('../middlewares/Auth');
 const { application } = require('express');
 const multer = require('multer');
+const path = require('path');
 const storage = multer.diskStorage({
     destination: (req,file,cb) =>{
         cb(null,'./archivos')
@@ -22,18 +23,15 @@ router.post('/login', (req, respuesta) => {
     const { correo, clave } = req.body;
     conn.query(`select correo,clave,id_cargo,rut,id_empl_direccion from usuario_direccion where correo = ? and clave = ? UNION all select correo,clave,id_cargo,rut,id_empl_municipal FROM usuario_municipal where correo = ? and clave = ?`, [correo, clave, correo, clave], (err, res) => {
         console.log(res)
-        console.log(err)
-        
         if (!err && res !== undefined && Object.keys(res).length !== 0) {
-            console.log(res)
+
             const userForToken = {
                 correo: res[0].correo,
                 rut: res[0].rut,
                 id: res[0].id_empl_direccion || res[0].id_empl_municipal,
                 cargo: res[0].id_cargo
             }
-            console.log(res)
-            const token = jwt.sign(userForToken, process.env.SIGN, { expiresIn: "5h" })
+            const token = jwt.sign(userForToken, process.env.SIGN, { expiresIn: "10h" })
             respuesta.send({ correo: res[0].correo,rut:res[0].rut,id: res[0].id_empl_municipal || res[0].id_empl_direccion, cargo:res[0].id_cargo,token })
         } else {
             
@@ -268,13 +266,31 @@ router.post("/direccion/usuario",verify,(req,respuesta)=>{
 
 /*subida de archivos*/
 router.post('/upload',upload.array('files'),verify,(req,respuesta)=>{
-    conn.query(`SELECT * FROM usuario_direccion `, (err,res) =>{
-        console.log(req.body);
-        if(!err){
-           
-            respuesta.send("archivo subido exitosamente")  
+    const[id_solicitud,titulo,descripcion,inicio] = [req.body.id_solicitud,req.body.titulo,req.body.descripcion,req.body.inicio]
+    let ruta = path.join(__dirname,'../archivos');
+    let consulta = 'INSERT INTO plantilla_punto (id_punto_solicitud,dir_archivo) values '
+    let cont = 0
+    for (file of req.files){
+        cont++;
+        //console.log(file)
+        if(req.files.length == cont){
+            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`
         }
         else{
+            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`+","
+        }
+        
+        
+    }
+
+    conn.query(`INSERT INTO puntos (id_solicitud,titulo,descripcion,inicio) VALUES (?,?,?,?); select LAST_INSERT_ID() INTO @id_ultimo_empl;${consulta}`, [id_solicitud,titulo,descripcion,inicio],(err,res) =>{
+        
+        if(!err){
+           
+            respuesta.send(res)  
+        }
+        else{
+            console.log(err)
             respuesta.json("error")
         }
     }) 
