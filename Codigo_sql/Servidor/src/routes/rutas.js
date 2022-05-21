@@ -264,8 +264,8 @@ router.post("/direccion/usuario",verify,(req,respuesta)=>{
 })
 
 
-/*subida de archivos*/
-router.post('/upload',upload.array('files'),verify,(req,respuesta)=>{
+/*peticion para crear una plantilla*/
+router.post('/upload/plantilla',upload.array('files'),verify,(req,respuesta)=>{
     const[id_solicitud,titulo,descripcion,inicio] = [req.body.id_solicitud,req.body.titulo,req.body.descripcion,req.body.inicio]
     let ruta = path.join(__dirname,'../archivos');
     let consulta = 'INSERT INTO plantilla_punto (id_punto_solicitud,dir_archivo) values '
@@ -286,15 +286,48 @@ router.post('/upload',upload.array('files'),verify,(req,respuesta)=>{
     conn.query(`INSERT INTO puntos (id_solicitud,titulo,descripcion,inicio) VALUES (?,?,?,?); select LAST_INSERT_ID() INTO @id_ultimo_empl;${consulta}`, [id_solicitud,titulo,descripcion,inicio],(err,res) =>{
         
         if(!err){
-           
-            respuesta.send(res)  
+            respuesta.send(res)
+            //respuesta.download(`${path.join(__dirname,'../../archivos/Problema 1 - Parte 2-1653097581961.pdf')}`)  
         }
         else{
             console.log(err)
             respuesta.json("error")
         }
     }) 
-    
-    
 })
+//peticion para crear un intento , se puede reutilizar parte del codigo para solamente un intento y su archivo
+router.post('/upload/intento',upload.array('files'),verify,(req,respuesta)=>{
+    const[id_punto,fecha_intento,descripcion,respuesta_intento] = [req.body.id_punto,req.body.fecha_intento,req.body.descripcion,req.body.respuesta]
+    let ruta = path.join(__dirname,'../archivos');
+    let consulta = 'INSERT INTO archivo_intento (id_intento_solicitud,dir_archivo_intento) values '
+    let cont = 0
+    for (file of req.files){
+        cont++;
+        //console.log(file)
+        if(req.files.length == cont){
+            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`
+        }
+        else{
+            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`+","
+        }
+        
+        
+    }
+
+    conn.query(`INSERT INTO intento (id_punto,fecha_intento,descripcion,respuesta) VALUES (?,?,?,?); select LAST_INSERT_ID() INTO @id_ultimo_empl;${consulta}`, [id_punto,fecha_intento,descripcion,respuesta_intento],(err,res) =>{
+        
+        if(!err){
+            respuesta.send(res)
+            //respuesta.download(`${path.join(__dirname,'../../archivos/Problema 1 - Parte 2-1653097581961.pdf')}`)  
+        }
+        else{
+            console.log(err)
+            respuesta.json("error")
+        }
+    }) 
+})
+
+
+
+
 module.exports = router;
