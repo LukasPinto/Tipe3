@@ -21,6 +21,7 @@ const PuntosSolicitud = (props) => {
 
     listaPuntos(solicitud)
       .then((Response) => {
+        console.log('resp listado: '+Response.data)
         setPuntos(Response.data)
         setActualizar(!actualizar)
       }).
@@ -31,7 +32,7 @@ const PuntosSolicitud = (props) => {
 
   return (
     <>
-      {console.log(local)}
+
       {(local === '') ? (<Redirect to='/vistageneral'></Redirect>) :
         <>
           <div>
@@ -58,6 +59,7 @@ const PuntosSolicitud = (props) => {
                 </tr>
               </thead>
               <tbody>
+
                 {puntos.map((value, key) => {
                   return <>
                     <tr>

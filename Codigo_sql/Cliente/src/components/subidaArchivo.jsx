@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
+import SubirPlantilla from '../services/subirPlantilla.service';
 import CrearPunto from '../services/crearPunto.service';
 import "./css/subidaArchivo.css"
 
@@ -45,31 +47,49 @@ const ResumenJuicios = (props) => {
 
 
     const handleSubmit = async (e) => {
+        let id_punto = ''
         e.preventDefault()
-        const data = new FormData()
+        const files = new FormData()
         for (let clave in datosSubida){
             console.log({[clave]:datosSubida[clave]})
-            data.append([clave],datosSubida[clave])
+            files.append([clave],datosSubida[clave])
          
         }
         
         for (let file of archivos){
-            data.append( 'files',file )
+            files.append( 'files',file )
         }
-       
-        
-        console.log(data)
-        await CrearPunto(data)
-            .then((Response) => {
-                console.log(Response)
-                if (Response.data) {
-                    console.log(Response)
-                }
-            })
+        const ahora = new Date()
+        const data = {
+            id_solicitud: localStorage.getItem('direccion'),
+            ...datosSubida,
+            inicio:`${ahora.getFullYear()}/${ahora.getMonth()+1}/${ahora.getDate()}`
 
-            .catch(() => {
-                alert("error")
-            })
+        }
+        console.log(data)
+       await CrearPunto(data).then((response)=>{
+        console.log(response)
+        if(response.data){
+            
+            console.log(response.data)
+            id_punto = response.data['LAST_INSERT_ID']
+        }
+       }).catch(()=>{
+        alert("error")
+       })
+       await SubirPlantilla(files,id_punto)
+       .then((Response) => {
+           console.log(Response)
+           if (Response.data) {
+               console.log(Response)
+           }
+       })
+
+       .catch(() => {
+           alert("error")
+       })
+
+        
 
     }
     return (
@@ -77,7 +97,7 @@ const ResumenJuicios = (props) => {
             {console.log(datosSubida)}
             <div className="container" onDragOverCapture={dragStarted} >
                 <div >
-                    <p class="cajita1">Subida de Archivos</p>
+                    <p class="cajita1">Crear punto</p>
                 </div>
                 <div className='caja2'>
                     <Form onSubmit={handleSubmit}>
@@ -85,8 +105,6 @@ const ResumenJuicios = (props) => {
                         <Form.Control className="outer-control" type="text" name='titulo' onChange={handleChange}/>
                         <Form.Label>Descripcion</Form.Label>
                         <Form.Control className="outer-control" type="text" name='Descripcion' onChange={handleChange}/>
-                        <Form.Label>Tipo de archivo</Form.Label>
-                        <Form.Control className="outer-control" type="text" name='tipo de archivo' />
                         <Form.Label>Plantilla/Ejemplo</Form.Label>
 
                         {(drag == null) ? <>

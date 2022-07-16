@@ -165,10 +165,12 @@ router.post("/estado/solicitud",verify,(req,respuesta)=>{
 })
 
 router.post("/puntos/solicitud",verify,(req,respuesta)=>{
-
+    console.log(req.body.id_solicitud)
     const solicitud = req.body.id_solicitud;
-    conn.query(`select solicitud.id_solicitud,id_direccion,id_empl_municipal,fecha_inicio,puntos.estado ,id_punto,titulo,archivo,archivo_plantilla,inicio,termino from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
+    conn.query(`select solicitud.id_solicitud,id_direccion,id_empl_municipal,fecha_inicio,puntos.estado ,id_punto,titulo,inicio,termino from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud where puntos.id_solicitud = ?`,[solicitud],(err,res)=>{
+        console.log(err)
         if(!err){
+           
             respuesta.send(res)
         }
         else{
@@ -265,25 +267,27 @@ router.post("/direccion/usuario",verify,(req,respuesta)=>{
 
 
 /*peticion para crear una plantilla*/
-router.post('/upload/plantilla',upload.array('files'),verify,(req,respuesta)=>{
-    const[id_solicitud,titulo,descripcion,inicio] = [req.body.id_solicitud,req.body.titulo,req.body.descripcion,req.body.inicio]
+router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,respuesta)=>{
+   
+    const id_punto = req.params.id_punto
     let ruta = path.join(__dirname,'../archivos');
     let consulta = 'INSERT INTO plantilla_punto (id_punto_solicitud,dir_archivo) values '
     let cont = 0
+    
     for (file of req.files){
         cont++;
-        //console.log(file)
-        if(req.files.length == cont){
-            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`
+        console.log(file)
+        if(req.files.length == cont ){
+            consulta = consulta+`(${id_punto},"${path.join(ruta,`/${file.filename}`).toString()}")`
         }
         else{
-            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`+","
+            consulta = consulta+`(${id_punto},"${path.join(ruta,`/${file.filename}`).toString()}")`+","
         }
         
         
     }
 
-    conn.query(`INSERT INTO puntos (id_solicitud,titulo,descripcion,inicio) VALUES (?,?,?,?); select LAST_INSERT_ID() INTO @id_ultimo_empl;${consulta}`, [id_solicitud,titulo,descripcion,inicio],(err,res) =>{
+    conn.query(`SET FOREIGN_KEY_CHECKS = 0;${consulta}`,(err,res) =>{
         
         if(!err){
             respuesta.send(res)
@@ -294,6 +298,25 @@ router.post('/upload/plantilla',upload.array('files'),verify,(req,respuesta)=>{
             respuesta.json("error")
         }
     }) 
+})
+
+router.post('/crear/intento',verify,(req,respuesta)=>{
+    console.log(req.body)
+    const {id_solicitud,titulo,descripcion,inicio} = req.body;
+    conn.query('SET FOREIGN_KEY_CHECKS = 0;INSERT INTO puntos (id_solicitud,titulo,descripcion,inicio) VALUES (?,?,?,?);select LAST_INSERT_ID();',[id_solicitud,titulo,descripcion,inicio],(err,res)=>{
+        if(!err){
+        
+          aux ={LAST_INSERT_ID:res[2][0]['LAST_INSERT_ID()']}
+            respuesta.send(aux)
+        }
+        else{
+            respuesta.send(err)
+        }
+
+    })
+
+
+
 })
 //peticion para crear un intento , se puede reutilizar parte del codigo para solamente un intento y su archivo
 router.post('/upload/intento',upload.array('files'),verify,(req,respuesta)=>{
