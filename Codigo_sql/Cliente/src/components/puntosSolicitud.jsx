@@ -10,6 +10,7 @@ import { useLocalStorage } from './custom/useLocalStorage';
 import listaPuntos from '../services/listaPuntos.service';
 
 
+
 const PuntosSolicitud = (props) => {
   const [local, setLocal] = useLocalStorage('direccion', '')
   const [solicitud,setSolicitud] =useLocalStorage('solicitud','')
@@ -28,6 +29,8 @@ const PuntosSolicitud = (props) => {
       catch(() => {
         alert("error")
       })
+
+    
   }, [traerDatos])
 
   return (

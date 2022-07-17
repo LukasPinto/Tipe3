@@ -350,7 +350,34 @@ router.post('/upload/intento',upload.array('files'),verify,(req,respuesta)=>{
     }) 
 })
 
+router.get('/solicitud/usuario/:id_empl_municipal',verify,(req,respuesta)=>{
+    const id_direccion = req.params.id_empl_municipal
+ 
+    conn.query("SELECT solicitud.id_solicitud,id_direccion,id_empl_municipal, fecha_inicio, puntos.estado,fecha_termino,puntos.id_punto,titulo,descripcion,inicio,termino,id_empleado from solicitud join puntos on solicitud.id_solicitud = puntos.id_solicitud join empl_solicitud on empl_solicitud.id_punto=puntos.id_punto where solicitud.estado = 'pendiente' and empl_solicitud.id_empleado = ?",[id_direccion],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send("error")
+        }
 
+    })
 
+})
+
+router.get('/intentos/usuario/:id_punto',verify,(req,respuesta)=>{
+    const id_punto = req.params.id_punto
+ 
+    conn.query("select * from intento WHERE id_punto = ? ",[id_punto],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send("error")
+        }
+
+    })
+
+})
 
 module.exports = router;
