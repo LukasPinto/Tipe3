@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { UserContext } from '../context/userContext';
 import loginService from '../services/login.service';*/
 import './css/login.css';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { UserContext } from '../context/userContext';
 import { useState, useContext } from 'react';
 import loginService from '../services/login.service';
@@ -32,7 +32,7 @@ export default function IncioSesion(props) {
   const { userState, setUserState } = useContext(UserContext)
   const correo = body.correo
   const clave = body.clave
-  const history = useHistory()
+  const history = useNavigate()
   const handleChange = async (e) => {
     await setBody({
       ...body,
@@ -63,10 +63,10 @@ export default function IncioSesion(props) {
         })
         console.log(userState.cargo)
         if(response.data.cargo === 1){
-          history.push('/vistageneral')
+          history('/vistageneral')
         }
         else {
-          history.push("/bandejaintentos")
+          history("/bandejaintentos")
         }
         
       }

@@ -2,7 +2,7 @@ import React, { useContext, Component } from 'react';
 import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import "./css/puntosSolicitud.css"
-import { Redirect, useLocation,Link } from 'react-router-dom';
+import { Navigate, useLocation,Link } from 'react-router-dom';
 import listadoPuntos from '../services/puntosDireccion.service';
 import { useState, useEffect } from 'react';
 
@@ -33,7 +33,7 @@ const PuntosSolicitud = (props) => {
   return (
     <>
 
-      {(local === '') ? (<Redirect to='/vistageneral'></Redirect>) :
+      {(local === '') ? (<Navigate to='/vistageneral'/>) :
         <>
           <div>
             <p class="cajita1">Puntos de la solicitud</p>
@@ -78,7 +78,6 @@ const PuntosSolicitud = (props) => {
                               <Table className= "fondoTabla" striped bordered hover size="s">
                                 <thead>
                                   <tr>
-
                                     <th>Numero Intento</th>
                                     <th>Encargado</th>
                                     <th>Estado</th>
@@ -100,11 +99,9 @@ const PuntosSolicitud = (props) => {
                           </Accordion.Body>
                         </Accordion.Item>
 
-                      </Accordion> </td>
-
-
+                      </Accordion></td>
                       <td>{value.inicio.substring(0, 10)}</td>
-                      <td>{value.termino.substring(0, 10)}</td>
+                      <td>{(value.termino !==null) &&(value.termino.substring(0, 10))}</td>
                       <td>{value.estado}</td>
                     </tr>
                   </>

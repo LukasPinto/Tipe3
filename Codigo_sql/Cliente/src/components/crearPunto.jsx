@@ -61,7 +61,7 @@ const ResumenJuicios = (props) => {
         }
         const ahora = new Date()
         const data = {
-            id_solicitud: localStorage.getItem('direccion'),
+            id_solicitud: localStorage.getItem('solicitud').replace(/['"]+/g, ''),
             ...datosSubida,
             inicio:`${ahora.getFullYear()}/${ahora.getMonth()+1}/${ahora.getDate()}`
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Form, Button, Table, Badge } from 'react-bootstrap';
 import direccionesService from '../services/listadoDirecciones.service';
 import { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DirContext, DireccionContext } from '../context/dirContext';
 import { useLocalStorage } from './custom/useLocalStorage';
 import estadoSolicitud from '../services/estadoSolicitud.service';
@@ -16,11 +16,12 @@ const VistaGeneral = () => {
     const [direcciones, setDirecciones] = useState([])
     const [actualizar, setActualizar] = useState(true)
     const [traerDatos, setTraerDatos] = useState(true)
-    const history = useHistory()
+    const history = useNavigate()
     useEffect(() => {
 
         direccionesService()
             .then((Response) => {
+                console.log(Response.data)
                 setDirecciones(Response.data)
                 setActualizar(!actualizar)
             }).
@@ -37,13 +38,13 @@ const VistaGeneral = () => {
         .then((Response) => {
             setSolicitud(Response.data[0].id_solicitud)
             setEstado(Response.data[0].estado)
-            history.push("/puntossolicitud")
+            history("/puntossolicitud")
           }).
           catch((err) => {
             
             setSolicitud("")
             setEstado("false")
-            history.push("/puntossolicitud")
+            history("/puntossolicitud")
 
             
           })
@@ -51,34 +52,28 @@ const VistaGeneral = () => {
    
 
     }
-    const handleClickHistorial = async(e) => {
+    const handleClickHistorial = (e) => {
 
         setDirContext(e.target.value)
         setLocal(e.target.value)
 
     }
 
-    const handleClickGestionar = async(e) => {
+    const handleClickGestionar = (e) => {
 
         setDirContext(e.target.value)
         setLocal(e.target.value)
-        history.push("/usuariosdireccion")
+        history("/usuariosdireccion")
 
     }
     return (
         <>
-    {console.log(direcciones)}
+   
 
             <div className="bg-light" style={{ backgroundColor: 'red' }}>
                 <Form >
 
-                    <Form.Group className="col-md-7 offset-md-1">
-
-                        <Button variant="primary" type="submit" className="col-md-5">
-                            Listado de direcciones
-                        </Button>
-
-                    </Form.Group>
+                  
 
                     <Form.Group className="col-md-4 offset-md-7">
 
@@ -101,7 +96,7 @@ const VistaGeneral = () => {
                             </thead>
                             <tbody>
 
-
+                            
                                 {direcciones.map((value, key) => {
                                     return <><tr>
                                         <td key={value.id_direccion}>{value.nombre_direccion}</td>

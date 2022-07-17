@@ -5,7 +5,7 @@ import usuariosPorDireccion from '../services/usuariosDireccion.service';
 import { useLocalStorage } from './custom/useLocalStorage';
 import EliminiarUsuarioDireccion from '../services/eliminarUsuario.service';
 import { UserContext } from '../context/userContext';
-import {  Link,useHistory } from 'react-router-dom';
+import {  Link,useNavigate } from 'react-router-dom';
 const UsuarioDireccion = (props) => {
 
   const [usuarios, setUsuarios] = useState([])
@@ -14,7 +14,7 @@ const UsuarioDireccion = (props) => {
   const [traerDatos, setTraerDatos] = useState(true)
   const [usuario,setUsuario] = useLocalStorage('usuario_direccion','')
   const { userState, setUserState } = useContext(UserContext)
-  const history = useHistory()
+  const history = useNavigate()
   useEffect(() => {
 
     usuariosPorDireccion(local)
@@ -40,7 +40,7 @@ const UsuarioDireccion = (props) => {
   }
   const editarUsuario = async(e) =>{
     setUsuario(e.target.value)
-  history.push("/modificarusuario")
+  history("/modificarusuario")
 }
 
 
