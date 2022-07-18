@@ -414,4 +414,17 @@ router.get('/plantilla/:id_punto',verify,(req,respuesta)=>{
 
 
 })
+
+router.put('/usuario/nuevo/intento',verify,(req,respuesta)=>{
+    const [id_punto,descripcion,respuestaIntento ]=[req.body.id_punto,req.body.descripcion,req.body.respuesta]
+
+    conn.query(`insert into intento ( id_punto, fecha_intento,descripcion,respuesta) values (${id_punto},CURRENT_TIMESTAMP,${descripcion},${respuestaIntento})`,(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send(err)
+        }
+    })
+})
 module.exports = router;
