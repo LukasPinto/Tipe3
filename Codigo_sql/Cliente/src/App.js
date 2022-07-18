@@ -112,13 +112,13 @@ const App = () => {
       {userState.cargo === 1 && ( <Route  path="/puntossolicitud" element={<PuntosSolicitud/>} /> )}
 
       {userState.cargo === 1 && ( <Route  path="/vistageneral" element={<VistaGeneral/>} /> )}
-      {userState.cargo === 1 && ( <Route  path="/subidaArchivo" element={<ResumenJuicios/>} /> )}
+      {userState.cargo === 1 && ( <Route path="/subidaArchivo" element={<ResumenJuicios/>} /> )}
 
       {userState.cargo === 2 && ( <Route  path="/solicitarsubalterno" element={<SolicitarSubAlterno/>} /> )}
       {(userState.cargo === 2 || userState.cargo === 3 ) && ( 
       <>
       <Route path="/bandejaintentos" element={<BandejaIntentos/>} /> 
-      <Route path="nuevointento" element = {<NuevoIntento/>}/>
+      <Route path="/nuevointento" element = {<NuevoIntento/>}/>
       
       
       </>)}

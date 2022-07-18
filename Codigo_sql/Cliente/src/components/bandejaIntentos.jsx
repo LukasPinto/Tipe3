@@ -3,7 +3,7 @@ import "./css/bandejaIntentos.css"
 import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import "./css/puntosSolicitud.css"
-import { Navigate, useLocation, Link } from 'react-router-dom';
+import {  Link ,useNavigate} from 'react-router-dom';
 import listadoPuntos from '../services/puntosDireccion.service';
 import { useState, useEffect, useContext } from 'react';
 import PuntosUsuario from '../services/PuntosUsuario.service';
@@ -12,17 +12,17 @@ import listaPuntos from '../services/listaPuntos.service';
 import { UserContext } from '../context/userContext';
 import Intentos from '../services/intentos.service';
 const BandejaIntentos = (props) => {
-  const [local, setLocal] = useLocalStorage('direccion', '')
-  const [solicitud, setSolicitud] = useLocalStorage('solicitud', '')
+  const [punto, setPunto] = useLocalStorage('punto', '')
+  const [intento_id, setIntentoId] = useLocalStorage('intento', '')
   const [puntos, setPuntos] = useState([])
   const [intentos, setIntentos] = useState([])
   const [actualizar, setActualizar] = useState(true)
   const [traerDatos, setTraerDatos] = useState(true)
   const { userState, setUserState } = useContext(UserContext)
-  const contenido = []
-  useEffect(() => {
+  const history = useNavigate()
+  useEffect(async () => {
 
-    PuntosUsuario(userState.id).then((Response) => {
+    await PuntosUsuario(userState.id).then((Response) => {
       setPuntos(Response.data)
 
 
@@ -32,16 +32,16 @@ const BandejaIntentos = (props) => {
       alert("error")
     })
 
-    console.log(puntos)
+
   }, [])
 
-  useEffect(() => {
-    let aux = []
+  useEffect(async () => {
+    const aux = []
     for (let punto in puntos) {
-      console.log(punto)
-      Intentos(puntos[punto].id_punto)
+
+      await Intentos(puntos[punto].id_punto)
         .then((Response) => {
-          console.log(Response.data)
+      
           aux.push(Response.data)
 
         }).catch(() => {
@@ -49,108 +49,112 @@ const BandejaIntentos = (props) => {
         })
 
     }
-    setIntentos(aux)
-    console.log(intentos)
-    // for (let i of intentos) {
-    //   for (let j of i) { 
-    //     console.log(j)
-    //     contenido.push(<tr>
-    //     <td>asdsad{j.id_intento}</td>
-    //     <td>asdsad</td>
-    //     <td>asdasd</td>
-    //     </tr>)
-
-    //   }
-    // }
+    await setIntentos(aux)
+  
+  }, [actualizar])
 
 
-
-  }, [])
-
-
-
+const handleClickPunto = (e) =>{
+  setPunto(e.target.value)
+  history('/nuevointento')
+}
 
   return (
     <>
+      <div>
+        <p class="cajita1">Puntos de la solicitud</p>
+      </div>
+      <div>
+        <Button className='botoncito2'>ORDENAR</Button>{' '}
+      </div>
+      <div className="bg-secondary"  >
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
 
-      <>
-        <div>
-          <p class="cajita1">Puntos de la solicitud</p>
-        </div>
-        <div>
-          <Button className='botoncito2'>ORDENAR</Button>{' '}
-        </div>
-        <div className="bg-secondary"  >
-          <Table striped bordered hover size="sm">
-            <thead>
-              <tr>
+              <th>Puntos</th>
+              <th>Descripcion del punto</th>
+              <th>Historial</th>
+              <th>Fecha inicio</th>
+              <th>Fecha termino</th>
+              <th>Estado</th>
 
-                <th>Puntos</th>
-                <th>Descripcion del punto</th>
-                <th>Historial</th>
-                <th>Fecha inicio</th>
-                <th>Fecha termino</th>
-                <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
 
-              </tr>
-            </thead>
-            <tbody>
-
-              {puntos.map((value, key) => {
-                return <>
-                  <tr>
-                    <td>{key + 1}</td>
-                    <td>{value.titulo}</td>
+            {puntos.map((value, key) => {
+              return (<>
+                <tr>
+                  <td>{key + 1}</td>
+                  <td>{value.titulo}</td>
 
 
-                    <td ><Accordion variant="primary" alwaysClose >
-                      <Accordion.Item eventKey="0" variant="primary" >
-                        <Accordion.Header variant="primary" >Ver</Accordion.Header>
-                        <Accordion.Body variant="primary">
+                  <td ><Accordion variant="primary" alwaysOpen >
+                    <Accordion.Item eventKey="0" variant="primary" >
+                      <Accordion.Header variant="primary" >Ver</Accordion.Header>
+                      <Accordion.Body variant="primary">
 
-                          <Table className="fondoTabla" striped bordered hover size="s">
-                            <thead>
-                              <tr>
-                                <th>Numero Intento</th>
-                                <th>Encargado</th>
-                                <th>Estado</th>
-                                <th>Detalle</th>
+                        <Table className="fondoTabla" striped bordered hover size="s">
+                          <thead>
+                            <tr>
+                              <th>Numero Intento</th> 
+                              <th>Estado</th>
+                              <th>Respuesta</th>
+                              <th>Ver detalle</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {intentos.map((val, k) => {
+                              return (
+                                val.map((valor, llave) => {
 
-                              </tr>
-                            </thead>
-                            <tbody>
-                              
-                              {intentos.map((value, key) => {
-                                console.log(value)
-                               
-                                
-                                
-                              })}
+                                  return (
 
-                              <tr><Button className="boton-centro button" type="button" >Ver</Button>{' '}</tr>
+                                    <>
+                                      {valor.id_punto === value.id_punto && (<tr>
+                                        <td>{llave+1}</td>
+                                        <td>{valor.estado}</td>
+                                        <td>{valor.descripcion} </td>
+                                        <td><Button className="boton-centro button" type="button" >Ver</Button>{' '}</td>
+                                      </tr>)}
 
-                            </tbody>
-                          </Table>
+                                    </>)
+                                })
 
-                        </Accordion.Body>
-                      </Accordion.Item>
+                              )
+                            })}
 
-                    </Accordion></td>
-                    <td>{value.inicio.substring(0, 10)}</td>
-                    <td>{(value.termino !== null) && (value.termino.substring(0, 10))}</td>
-                    <td>{value.estado}</td>
-                  </tr>
-                </>
-              })}
-            </tbody>
-          </Table>
-        </div>
+                            
+                            <tr><Button className='botoncito2' type="button"  value={value.id_punto} onClick={handleClickPunto}>Crear nuevo intento</Button></tr>
+
+                          </tbody>
+                        </Table>
+
+                      </Accordion.Body>
+                    </Accordion.Item>
+
+                  </Accordion></td>
+                  <td>{value.inicio.substring(0, 10)}</td>
+                  <td>{(value.termino !== null) && (value.termino.substring(0, 10))}</td>
+                  <td>{value.estado}</td>
+                </tr>
+              </>)
+            })}
+          </tbody>
+        </Table>
 
 
-        <div>
-          <Link to={{ pathname: "/subidaarchivo" }}><Button className='botoncito2'>Crear nuevo punto</Button>{' '}</Link>
-        </div>
-      </>
+
+
+      </div>
+     
+
+
+      <div>
+        <Link to={{ pathname: "/subidaarchivo" }}><Button className='botoncito2'>Crear nuevo punto</Button>{' '}</Link>
+      </div>
+
 
 
 

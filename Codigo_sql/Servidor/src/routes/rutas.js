@@ -7,6 +7,7 @@ const { verify } = require('../middlewares/Auth');
 const { application } = require('express');
 const multer = require('multer');
 const path = require('path');
+const fs = require("fs");
 const storage = multer.diskStorage({
     destination: (req,file,cb) =>{
         cb(null,'./archivos')
@@ -278,10 +279,10 @@ router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,resp
         cont++;
         console.log(file)
         if(req.files.length == cont ){
-            consulta = consulta+`(${id_punto},"${path.join(ruta,`/${file.filename}`).toString()}")`
+            consulta = consulta+`(${id_punto},"${file.filename.toString()}")`
         }
         else{
-            consulta = consulta+`(${id_punto},"${path.join(ruta,`/${file.filename}`).toString()}")`+","
+            consulta = consulta+`(${id_punto},"${file.filename.toString()}")`+","
         }
         
         
@@ -380,4 +381,37 @@ router.get('/intentos/usuario/:id_punto',verify,(req,respuesta)=>{
 
 })
 
+
+router.get('/punto/:id_punto',verify,(req,respuesta)=>{
+    const id_punto = req.params.id_punto
+    
+    conn.query('select  * from puntos where id_punto = ?',[id_punto],(err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuestas.send(err)
+        }
+    })
+})
+
+router.get('/descargar/plantilla',verify,(req,respuesta)=>{
+    
+    const [id_archivo_plantilla] = [req.body.id_archivo_plantilla]
+    respuesta.download(`${path.join(__dirname,`../../archivos/${id_archivo_plantilla}`,)}`)
+
+})
+router.get('/plantilla/:id_punto',verify,(req,respuesta)=>{
+    const id_punto = req.params.id_punto
+    conn.query('select * from plantilla_punto where plantilla_punto.id_punto_solicitud = ?',id_punto, (err,res)=>{
+        if(!err){
+            respuesta.send(res)
+        }
+        else{
+            respuesta.send(err)
+        }
+    })
+
+
+})
 module.exports = router;
