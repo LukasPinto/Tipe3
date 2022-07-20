@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 export default function CrearPunto(data){
     
-    return (Axios.post(`http://localhost:3001/crear/intento`, {
+    return (Axios.post(`http://localhost:3110/crear/intento`, {
 
         id_solicitud:data.id_solicitud,
         titulo:data.titulo,
