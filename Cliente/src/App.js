@@ -48,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
 
-    Axios.get('http://localhost:3001/Auth', {
+    Axios.get('http://localhost:3110/Auth', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
