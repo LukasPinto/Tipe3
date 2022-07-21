@@ -1,7 +1,8 @@
 require('dotenv').config();
-const mysql=require('mysql');
+const mysql=require('mysql2');
 
-const conn = mysql.createConnection({
+
+const connection = mysql.createConnection( {
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
@@ -9,7 +10,7 @@ const conn = mysql.createConnection({
     multipleStatements: true
 })
 
-conn.connect(function(err){
+connection.connect(function(err){
     if(err){
         console.log(err);
         return;
@@ -18,4 +19,11 @@ conn.connect(function(err){
     }
 });
 
-module.exports=conn;
+// const config = {
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Nosecuales',
+//     database: 'tipe3',
+// };
+// const pool = mysql.createPool(config);
+module.exports=connection;

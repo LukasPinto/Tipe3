@@ -8,6 +8,7 @@ const { application } = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require("fs");
+
 const storage = multer.diskStorage({
     destination: (req,file,cb) =>{
         cb(null,'./archivos')
@@ -22,8 +23,9 @@ const upload = multer({storage});
 
 router.post('/login', (req, respuesta) => {
     const { correo, clave } = req.body;
-    conn.query(`select correo,clave,id_cargo,rut,id_empl_direccion from usuario_direccion where correo = ? and clave = ? UNION all select correo,clave,id_cargo,rut,id_empl_municipal FROM usuario_municipal where correo = ? and clave = ?`, [correo, clave, correo, clave], (err, res) => {
-        console.log(res)
+    console.log(correo,clave)
+    const aux = conn.query(`select correo,clave,id_cargo,rut,id_empl_direccion from usuario_direccion where correo = ? and clave = ? UNION all select correo,clave,id_cargo,rut,id_empl_municipal FROM usuario_municipal where correo = ? and clave = ?`, [correo, clave, correo, clave], (err, res) => {
+        console.log(res,err)
         if (!err && res !== undefined && Object.keys(res).length !== 0) {
 
             const userForToken = {
