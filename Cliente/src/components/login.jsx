@@ -38,7 +38,6 @@ export default function IncioSesion(props) {
       ...body,
       [e.target.name]: e.target.value
     })
-    console.log(body.correo, body.clave)
   }
 
 

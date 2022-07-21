@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 export default function usuariosPorDireccion(id_direccion){
     
-    return (Axios.post(`http://10.100.6.6:3110/direccion/usuarios`, {
+    return (Axios.post(`http://${process.env.REACT_APP_HOST}/direccion/usuarios`, {
     id_direccion:id_direccion
  
 }

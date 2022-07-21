@@ -48,7 +48,7 @@ const App = () => {
 
   useEffect(() => {
 
-    Axios.get('http://10.100.6.6:3110/Auth', {
+    Axios.get(`http://${process.env.REACT_APP_HOST}:3110/Auth`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
