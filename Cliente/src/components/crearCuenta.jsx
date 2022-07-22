@@ -35,8 +35,8 @@ const CrearCuenta = (props) => {
             correo: "",
             clave: ""
         });
-    const handleChange = async (e) => {
-        await setBody({
+    const handleChange =  (e) => {
+         setBody({
             ...body,
             [e.target.name]: e.target.value
         })
