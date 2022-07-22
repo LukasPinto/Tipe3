@@ -297,7 +297,7 @@ router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,resp
         }
         else{
             console.log(err)
-            respuesta.json("error")
+            respuesta.json(err)
         }
     }) 
 })
