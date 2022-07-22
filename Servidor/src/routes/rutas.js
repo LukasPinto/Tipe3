@@ -118,6 +118,27 @@ router.post("/crearUsuario",verify,(req,respuesta) => {
     
 })
 
+
+router.post("/direccion/usuario/borrar",verify,(req,respuesta)=>{
+    const {id_cargo,id_empl_direccion} = req.body;
+    console.log(req.body)
+    if (id_cargo == 1){
+        conn.query(`DELETE FROM usuario_direccion WHERE usuario_direccion.id_empl_direccion = ?`,[id_empl_direccion], (err,res) =>{
+            if(!err){
+                respuesta.send(res)
+            }
+            else{
+                respuesta.json("error")
+            }
+    
+        })   
+    }
+    else {
+        respuesta.json("error")
+    }
+
+})
+
 router.post("/puntodireccion",verify,(req,respuesta)=>{
     const direccion = req.body.id_direccion;
  
