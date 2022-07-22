@@ -73,10 +73,12 @@ const ResumenJuicios = (props) => {
             
             console.log(response.data)
             id_punto = response.data['LAST_INSERT_ID']
+            alert('Punto creado exitosamente')
         }
        }).catch(()=>{
         alert("error")
        })
+       console.log(id_punto)
        await SubirPlantilla(files,id_punto)
        .then((Response) => {
            console.log(Response)

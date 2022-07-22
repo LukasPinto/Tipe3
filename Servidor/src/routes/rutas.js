@@ -98,7 +98,7 @@ router.get("/Auth",verify,(req,res)=>{
     res.json(respuesta)
 })
 
-router.post("/crearUsuario",verify,(req,respuesta) => {
+router.post("/  Usuario",verify,(req,respuesta) => {
     const datos = req.body.user;
     console.log(req.body.user,req.body.admin)
     if (req.body.admin.id_cargo == 1){
@@ -279,7 +279,6 @@ router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,resp
     
     for (file of req.files){
         cont++;
-        console.log(file)
         if(req.files.length == cont ){
             consulta = consulta+`(${id_punto},"${file.filename.toString()}")`
         }
@@ -344,6 +343,22 @@ router.put('/usuario/nuevo/intento',verify,(req,respuesta)=>{
     conn.query(`SET FOREIGN_KEY_CHECKS = 0;insert into intento ( id_punto, fecha_intento,respuesta) values (${id_punto},CURRENT_TIMESTAMP,'');select LAST_INSERT_ID()`,(err,res)=>{
         if(!err){
             aux ={LAST_INSERT_ID:res[2][0]['LAST_INSERT_ID()']}
+            respuesta.send(aux)
+
+        }
+        else{
+            respuesta.send(err)
+        }
+    })
+})
+
+router.put('/crear/punto',verify,(req,respuesta)=>{
+    const [id_solicitud,titulo,descripcion]=[req.body.id_solicitud,req.body.titulo ,req.body.descripcion ]
+    console.log(req.body)
+    conn.query(`SET FOREIGN_KEY_CHECKS = 0;insert into puntos ( id_solicitud,titulo,descripcion,inicio) values (?,?,?,CURRENT_TIMESTAMP);select LAST_INSERT_ID()`,[id_solicitud,titulo,descripcion],(err,res)=>{
+        if(!err){
+            aux ={LAST_INSERT_ID:res[2][0]['LAST_INSERT_ID()']}
+            console.log(aux)
             respuesta.send(aux)
 
         }
