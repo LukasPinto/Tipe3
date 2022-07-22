@@ -152,7 +152,7 @@ const handleClickPunto = (e) =>{
 
 
       <div>
-        <Link to={{ pathname: "/subidaarchivo" }}><Button variant="success" className="margen11">Crear nuevo punto</Button>{' '}</Link>
+        <Link to={{ pathname: "/subidaarchivo" }}>{' '}</Link>
       </div>
 
 

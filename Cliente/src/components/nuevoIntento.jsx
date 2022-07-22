@@ -192,7 +192,7 @@ const NuevoIntento = (props) => {
                                     fileRef1.current.click()
                                 
                                 }}>
-                                    Custom File Input Button
+                                    Elegir Archivo
                                 </Button><Button variant="outline-success" type="submit" className="botoncito1 button" >Enviar Intento</Button>
                             </div>
                         </> : <>
