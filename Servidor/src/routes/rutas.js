@@ -98,7 +98,7 @@ router.get("/Auth",verify,(req,res)=>{
     res.json(respuesta)
 })
 
-router.post("/  Usuario",verify,(req,respuesta) => {
+router.post("/crearUsuario",verify,(req,respuesta) => {
     const datos = req.body.user;
     console.log(req.body.user,req.body.admin)
     if (req.body.admin.id_cargo == 1){

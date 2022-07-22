@@ -124,9 +124,9 @@ const CrearCuenta = (props) => {
                         </Form.Select>
                     </Form.Group>
 
-                    <btn variant="outline-success" type="button" className="botoncito1 button" >
+                    <button variant="outline-success" type="submit" className="botoncito1 button" >
                         Crear usuario
-                    </btn>{' '}
+                    </button>{' '}
 
                 </div>
             </Form>
