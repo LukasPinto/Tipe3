@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Container, Table } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import { useLocalStorage } from './custom/useLocalStorage';
 import solicitudes from '../services/solicitudes.sevice';
@@ -43,14 +43,14 @@ const HistorialSolicitud = (props) => {
   return (
     <>
   {console.log(solicitud)}
+      <Container className='fondoBlanco2' maxWidth="sm">
+        <h3 className='margen1' variant="dark">Historial de solicitudes</h3>
+      
       <div>
-        <p class="cajita1">Historial de solicitud</p>
-      </div>
-      <div>
-        <Button className='botoncito2'>ORDENAR</Button>{' '}
+        <Button variant="success" className="margen6">Ordenar</Button>{' '}
       </div>
       <div className="bg-secondary"  >
-        <Table striped bordered hover size="sm">
+        <Table striped bordered hover size="s" variant="light">
           <thead>
             <tr>
 
@@ -71,7 +71,7 @@ const HistorialSolicitud = (props) => {
                   <td>{value.fecha_termino ? <></>:value.fecha_termino}</td>
                   <td>Cuenta publica de {value.nombre_direccion} - {value.fecha_inicio.substring(0,10)} </td>
                   <td>{value.estado.toUpperCase()}</td>
-                  <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="primary" name="id_solicitud" value={value.id_solicitud} onClick={handleClick} >Ver</Button></Link>{' '}</td>
+                  <td><Link to={{ pathname: "/puntossolicitud" }} ><Button variant="success" name="id_solicitud" value={value.id_solicitud} onClick={handleClick} >Ver</Button></Link>{' '}</td>
                 </tr>
               </>
             })}
@@ -80,9 +80,10 @@ const HistorialSolicitud = (props) => {
         </Table>
       </div>
       <div> 
-        <Button className='botoncito2'>Crear expediente</Button>{' '}
-        <Button className='botoncito2'>Descargar todos los documentos</Button>{' '}
+        <Button variant="success" className="margen6">Crear expediente</Button>{' '}
+        <Button variant="success" className="margen6">Descargar todos los documentos</Button>{' '}
       </div>
+      </Container>
     </>
 
   );

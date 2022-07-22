@@ -5,5 +5,26 @@
     height: 100%;
     width: 100%;
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(21,168,99,1) 0%, rgba(14,141,66,1) 0%, rgba(9,121,42,1) 96%, rgba(9,122,44,1) 100%, rgba(29,164,25,1) 100%, rgba(0,212,255,1) 100%);
+    
+}
+.tamImagen{
+    
+    width: 10cm;
+    height: 10cm;
+    margin-left: 11.6cm;
+    padding: 10px;
+}
+.centrado{
+    width: 10cm;
+    height: 7cm;
+    
+    border-color: black;
+}
+.tamTodo{
+    width: 6cm;
+    height: 6cm;
+    margin:auto;
+}
+.margen10{
+    margin-left: 12.5cm;
 }

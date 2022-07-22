@@ -19,11 +19,11 @@ connection.connect(function(err){
     }
 });
 
-// const config = {
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'Nosecuales',
-//     database: 'tipe3',
-// };
-// const pool = mysql.createPool(config);
+const config = {
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'tipe',
+};
+const pool = mysql.createPool(config);
 module.exports=connection;

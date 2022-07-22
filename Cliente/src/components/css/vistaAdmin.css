@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+  }
+    body {
+      min-height: 100vh;
+      display: flex;
+      font-weight: 400;
+      font-family: sans-serif;
+      /*background: #12c2e9;  /* fallback for old browsers */
+      /*background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+      background: azure;
+      
+    }
+    
+    .tituloB{
+      text-align:left;
+      margin: 2px;
+      line-height: 40px;
+      font-family:Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      border-radius: 10%;
+      width: 23ch;
+      
+      font-weight: bold;
+    }
+  
+    .botoncito1 {
+      background-color: #ddfaed; /* Green */
+      border: none;
+      color: rgb(0, 0, 0);
+      width: 100px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 20px;
+      border-radius: 8px;
+      height: 30px;
+      border: 1px solid #7dbb7f;
+      
+    }
+    .boton-centro {
+      background-color: #ddfaed; /* Green */
+      border: none;
+      color: rgb(0, 0, 0);
+      width: 100px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 20px;
+      border-radius: 8px;
+      height: 30px;
+      border: 1px solid #7dbb7f;
+    }
+    
+    .fondoTabla{
+      
+        background-color: azure;
+      padding: 10px;
+    
+    }
+   .algo{
+      padding: 10px;
+      background-color: aliceblue;
+      
+   }
+   .contenTabla1{
+       background-color: #ffffff;
+    
+       margin: 100px;
+       padding: 100px;
+       border-radius: 40%;
+   
+   }
+  
+   .fondoBlanco3{
+    border-radius: 40px;
+    border-top-style:hidden;
+    height: auto;
+    box-shadow: 0px 0px 10px black;
+    background-color: aliceblue;
+    
+  }
+   
+   .contenedor3{
+    border-radius: 10%;
+    margin: auto;
+    padding: 100px;
+    margin-top: -105px;
+    background: rgb(255, 255, 255) /* Green background with 30% opacity */
+    
+  }
+  .button {
+    transition-duration: 0.4s;
+  }
+  
+  .button:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  .tituloB{
+    color: azure;
+    border-color: black;
+  
+    margin: 50px;
+  }
+  .tituloTabla{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    margin-left: 20px;
+  }
+  .fondoTotal{
+      
+    background-color: azure;
+  padding: 10px;
+  
+  }
+  .margenVista{
+    margin: 1cm;
+  }

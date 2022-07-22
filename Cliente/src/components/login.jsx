@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { UserContext } from '../context/userContext';
 import loginService from '../services/login.service';*/
 import './css/login.css';
+import { Container} from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { UserContext } from '../context/userContext';
 import { useState, useContext } from 'react';
@@ -77,18 +78,19 @@ export default function IncioSesion(props) {
   }
 
   return (
-
+    <Container className='fondoBlanco2' maxWidth="sm">
     <div className='container-fluid h-100'>
       <div className="row pb-0 pt-0 ">
-        <div className='col ps-0 pe-0 mt-0 mb-0  bg-dark'>
-          <img className='w-100 h-100 ps-0 pe-0' src={img1} />
+        <div className='col ps-0 pe-0 mt-0 mb-0 '>
+          <img className='tamImagen' src={img1} />
         </div>
-            <div className="col ps-0 pe-0  mt-5 ">
-              <div className="card pt-5 ">
-                <div className="card-header text-center">
-                  <h3>💻Iniciar Usuario Municipal</h3>
-                </div>
-                <div className="card=body">
+            
+              <div className="centrado">
+                
+             
+                  <h3 className="row justify-content-center">💻Iniciar Usuario Municipal</h3>
+                 
+                <div className="tamTodo">
                   <form onSubmit={handleSubmit}>
                     <div className="input-group mb-4 ">
                       <div className="input-group-prependc">
@@ -126,13 +128,13 @@ export default function IncioSesion(props) {
 
                       />
                     </div>
-                    <button className="btn btn-info btn-lg btn-lock " type="submit" > Acceder </button>
-
+                    <button className="btn btn-success btn-lg btn-lock " type="submit" > Acceder </button>
+      
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       );
 }

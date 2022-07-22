@@ -55,7 +55,8 @@ const UsuarioDireccion = (props) => {
           <btn className="botoncito1 button" type="button" >{' '}
             Ordenar
           </btn>
-          <Table className="fondoTabla" striped bordered hover size="s">
+          <Table className="" striped bordered hover size="s">
+       
             <thead>
               <tr>
                 <th>Tipo de usuario</th>
@@ -65,6 +66,7 @@ const UsuarioDireccion = (props) => {
                 <th>Eliminar usuario</th>
               </tr>
             </thead>
+            
             <tbody>
               {usuarios.map((value, key) => {
                 return <>

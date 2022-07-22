@@ -129,3 +129,21 @@
     -moz-border-radius: 35px 0px 35px 0px; 
     -webkit-border-radius: 35px 0px 35px 0px; 
     border: 2px solid #5878ca;}
+
+  .margen1{
+    margin-left: 0.5cm;
+    margin-bottom: 2cm;
+    border-radius: 1cm;
+    
+  }
+  .fondoBlanco2{
+    border-radius: 40px;
+    border-top-style:hidden;
+    height: auto;
+    box-shadow: 0px 0px 10px black;
+    background-color: aliceblue;
+    
+  }
+  .margen6{
+    margin-left: 1cm;
+  }

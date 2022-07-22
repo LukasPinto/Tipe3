@@ -1,6 +1,6 @@
 import React from 'react';
 import "./css/bandejaIntentos.css"
-import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
+import { Form, Button, Table, Accordion, Card,Container } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import "./css/puntosSolicitud.css"
 import {  Link ,useNavigate} from 'react-router-dom';
@@ -60,14 +60,14 @@ const handleClickPunto = (e) =>{
 }
 
   return (
-    <>
+    <>    <Container className='fondoBlanco11' maxWidth="sm">
       <div>
-        <p class="cajita1">Puntos de la solicitud</p>
+        <h3 className="margen11">Puntos de la solicitud</h3>
       </div>
       <div>
-        <Button className='botoncito2'>ORDENAR</Button>{' '}
+        <Button variant='success'  className="margen11">ORDENAR</Button>{' '}
       </div>
-      <div className="bg-secondary"  >
+     
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -90,12 +90,12 @@ const handleClickPunto = (e) =>{
                   <td>{value.titulo}</td>
 
 
-                  <td ><Accordion variant="primary" alwaysOpen >
-                    <Accordion.Item eventKey="0" variant="primary" >
-                      <Accordion.Header variant="primary" >Ver</Accordion.Header>
-                      <Accordion.Body variant="primary">
+                  <td ><Accordion variant="success" alwaysOpen >
+                    <Accordion.Item eventKey="0"variant="success" >
+                      <Accordion.Header variant="success" >Ver</Accordion.Header>
+                      <Accordion.Body variant="success">
 
-                        <Table className="fondoTabla" striped bordered hover size="s">
+                        <Table variant="light"striped bordered hover size="s">
                           <thead>
                             <tr>
                               <th>Numero Intento</th> 
@@ -116,7 +116,7 @@ const handleClickPunto = (e) =>{
                                         <td>{llave+1}</td>
                                         <td>{valor.estado}</td>
                                         <td>{valor.descripcion} </td>
-                                        <td><Button className="boton-centro button" type="button" >Ver</Button>{' '}</td>
+                                        <td><Button variant="success" type="button" >Ver</Button>{' '}</td>
                                       </tr>)}
 
                                     </>)
@@ -126,7 +126,7 @@ const handleClickPunto = (e) =>{
                             })}
 
                             
-                            <tr><Button className='botoncito2' type="button"  value={value.id_punto} onClick={handleClickPunto}>Crear nuevo intento</Button></tr>
+                            <tr><Button variant="success" value={value.id_punto} onClick={handleClickPunto}>Crear nuevo intento</Button></tr>
 
                           </tbody>
                         </Table>
@@ -147,12 +147,12 @@ const handleClickPunto = (e) =>{
 
 
 
-      </div>
+  
      
 
 
       <div>
-        <Link to={{ pathname: "/subidaarchivo" }}><Button className='botoncito2'>Crear nuevo punto</Button>{' '}</Link>
+        <Link to={{ pathname: "/subidaarchivo" }}><Button variant="success" className="margen11">Crear nuevo punto</Button>{' '}</Link>
       </div>
 
 
@@ -160,7 +160,7 @@ const handleClickPunto = (e) =>{
 
 
 
-
+      </Container>
     </>
 
   );

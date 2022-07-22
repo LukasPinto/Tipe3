@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
-import { Form, Button, Table, Badge } from 'react-bootstrap';
+import { Form, Button, Table, Badge ,Container} from 'react-bootstrap';
 import SubirPlantilla from '../services/subirPlantilla.service';
 import CrearPunto from '../services/crearPunto.service';
-import "./css/subidaArchivo.css"
+import "./css/crearPunto.css"
 
 
 const ResumenJuicios = (props) => {
@@ -97,47 +97,39 @@ const ResumenJuicios = (props) => {
     return (
         <>
             {console.log(datosSubida)}
-            <div className="container" onDragOverCapture={dragStarted} >
-                <div >
-                    <p class="cajita1">Crear punto</p>
-                </div>
-                <div className='caja2'>
+            <Container className='fondoBlanco5' maxWidth="sm">
+            <div onDragOverCapture={dragStarted} >
+           
+                    <h3 className="margen6">Crear punto</h3>
+                  
                     <Form onSubmit={handleSubmit}>
                         <Form.Label>Titulo del Punto</Form.Label>
                         <Form.Control className="outer-control" type="text" name='titulo' onChange={handleChange}/>
                         <Form.Label>Descripcion</Form.Label>
                         <Form.Control className="outer-control" type="text" name='Descripcion' onChange={handleChange}/>
                         <Form.Label>Plantilla/Ejemplo</Form.Label>
-
                         {(drag == null) ? <>
-
-                            <div className='container'>
                                 <Form.Control className="drop-area " placeholder='Suba un archivo o arrastre aqui' disabled onChange={subirArchivos}  ></Form.Control>
                                 <Form.Control className="drop-area " multiple type='file' name="archivo" placeholder='Suba un archivo o arrastre aqui' onChange={subirArchivos} ref={fileRef1} hidden></Form.Control>
-                                <button className="botoncito1 button" variant="outline-success" onClick={(e) => {
+                                <Button variant="success" className="margen7" onClick={(e) => {
                                     e.preventDefault()
                                     fileRef1.current.click()
                                 
                                 }}>
-                                    Custom File Input Button
-                                </button>
-                            </div>
-                        </> : <>
-                            <div className='container'>
+                                    Seleccionar archivo
+                                </Button>    
+                                <Button variant="success" type="submit" >Crear punto</Button>         
+                        </> : <>      
                                 <Form.Control className="drop-area" type="file" multiple name="archivo" onChange={subirArchivos} ref = {fileRef2}  />
-                                
-                            </div>
-
                         </>}
-
-
-                        <button variant="outline-success" type="submit" className="botoncito1 button" >Crear punto</button>
+                        
 
                     </Form>
 
                 </div>
 
-            </div>
+                </Container>
+            
 
 
 
@@ -145,7 +137,7 @@ const ResumenJuicios = (props) => {
 
 
 
-
+                                
         </>
     );
 

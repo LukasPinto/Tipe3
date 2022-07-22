@@ -111,7 +111,7 @@
       
   }
   .botoncito04-2 {
-    background-color: #ddfaed; /* Green */
+    background-color: #196338; /* Green */
     border: none;
     color: rgb(0, 0, 0);
     width: 150px;
@@ -138,4 +138,15 @@
     background-color: azure;
   padding: 10px;
 
+}
+.margen11{
+  margin: 1cm;
+}
+.fondoBlanco11{
+  border-radius: 40px;
+  border-top-style:hidden;
+  height: auto;
+  box-shadow: 0px 0px 10px black;
+  background-color: aliceblue;
+  
 }

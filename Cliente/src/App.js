@@ -1,7 +1,7 @@
 import { useState, useEffect ,useContext} from 'react';
 import './App.css';
 import Axios from 'axios'
-import { Nav, Navbar, DropdownButton, ButtonGroup, Dropdown, Button } from 'react-bootstrap'
+import { Nav, Navbar, DropdownButton, ButtonGroup, Dropdown, Button, Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Routes, Route,Link ,useNavigate,useResolvedPath,useMatch, Navigate} from "react-router-dom";
 import InicioSesion from './components/login';
 import { UserContext } from './context/userContext';
@@ -75,13 +75,14 @@ const App = () => {
       
 
         <div className="App">
-          <Navbar bg="primary" variant="dark"
+        
+          <Navbar bg="light" variant="light"
             sticky="top" expand="sm em" collapseOnSelect className="ps-5  fs-5 ">
-
-            <Navbar.Brand >
+            
+            <Navbar.Brand bg="light" variant="light">
               Municipalidad de cartagena
             </Navbar.Brand>
-
+      
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse className="justify-content-end pe-2">
               {/*falta colocar las url de direccionamiento solamente */}

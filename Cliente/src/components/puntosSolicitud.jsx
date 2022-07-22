@@ -1,5 +1,5 @@
 import React, { useContext, Component } from 'react';
-import { Form, Button, Table, Accordion, Card } from 'react-bootstrap';
+import { Form, Button, Table, Accordion, Card, Container } from 'react-bootstrap';
 import "./css/historialSolicitud.css"
 import "./css/puntosSolicitud.css"
 import { Navigate, useLocation,Link } from 'react-router-dom';
@@ -38,13 +38,13 @@ const PuntosSolicitud = (props) => {
 
       {(local === '') ? (<Navigate to='/vistageneral'/>) :
         <>
+         <Container maxWidth="sm" className="fondoBlanco4">
+            <h3 >Puntos de la solicitud</h3>
+          
           <div>
-            <p class="cajita1">Puntos de la solicitud</p>
+            <Button variant="success">Ordenar</Button>{' '}
           </div>
-          <div>
-            <Button className='botoncito2'>ORDENAR</Button>{' '}
-          </div>
-          <div className="bg-secondary"  >
+        
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
@@ -68,17 +68,17 @@ const PuntosSolicitud = (props) => {
                     <tr>
                       <td>{key + 1}</td>
                       <td>{value.titulo}</td>
-                      <td><Button variant="primary">ASIGNAR</Button>{' '}</td>
-                      <td><Button variant="primary">ELIMINAR</Button>{' '}</td>
-                      <td><Button variant="primary">EDITAR</Button>{' '}</td>
+                      <td><Button variant="success">ASIGNAR</Button>{' '}</td>
+                      <td><Button variant="success">ELIMINAR</Button>{' '}</td>
+                      <td><Button variant="success">EDITAR</Button>{' '}</td>
 
 
-                      <td><Accordion defaultActiveKey="0" variant="primary">
-                        <Accordion.Item eventKey="0" variant="primary">
-                          <Accordion.Header variant="primary">Ver</Accordion.Header>
-                          <Accordion.Body variant="primary">
+                      <td><Accordion defaultActiveKey="0" variant="light">
+                        <Accordion.Item eventKey="0" variant="dark">
+                          <Accordion.Header variant="dark">Ver</Accordion.Header>
+                          <Accordion.Body variant="dark">
                             
-                              <Table className= "fondoTabla" striped bordered hover size="s">
+                              <Table striped bordered hover size="s" variant="success">
                                 <thead>
                                   <tr>
                                     <th>Numero Intento</th>
@@ -94,7 +94,8 @@ const PuntosSolicitud = (props) => {
                                   <td>n/a</td>
 
 
-                                  <td><Button className="boton-centro button" type="button">Ver</Button>{' '}</td>
+                                  <td>
+                                    <Button className="boton-centro button" variant='success' type="button">Ver</Button>{' '}</td>
 
                                 </tbody>
                               </Table>
@@ -111,12 +112,14 @@ const PuntosSolicitud = (props) => {
                 })}
               </tbody>
             </Table>
-          </div>
+      
 
 
           <div>
-            <Link to={{ pathname: "/subidaarchivo" }}><Button className='botoncito2'>Crear nuevo punto</Button>{' '}</Link>
+            <Link to={{ pathname: "/subidaarchivo" }}>
+              <Button variant="success">Crear nuevo punto</Button>{' '}</Link>
           </div>
+          </Container>
         </>
 
 

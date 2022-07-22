@@ -1,6 +1,7 @@
 import axios from 'axios';
+import "./css/bandejaIntentos.css"
 import React, { useEffect, useState, useRef } from 'react';
-import { Form, Button, Table, Badge, FormGroup } from 'react-bootstrap';
+import { Form, Button, Table, Badge, FormGroup,Container } from 'react-bootstrap';
 import SubirPlantilla from '../services/subirPlantilla.service';
 import CrearPunto from '../services/crearPunto.service';
 import "./css/subidaArchivo.css"
@@ -135,9 +136,10 @@ const NuevoIntento = (props) => {
         
         <>
             {console.log(datosSubida)}
+            <Container className='fondoBlanco11' maxWidth="sm">
             <div className="container" onDragOverCapture={dragStarted} >
                 <div >
-                    <p class="cajita1">Nuevo Intento</p>
+                    <h3 className="margen11">Nuevo Intento</h3>
                 </div>
                 <div className='caja2'>
                     <Form onSubmit={handleSubmit}>
@@ -185,13 +187,13 @@ const NuevoIntento = (props) => {
                                         })} 
                                 </div>
                                 <Form.Control className="drop-area " multiple type='file' name="archivo" placeholder='Suba un archivo o arrastre aqui' onChange={subirArchivos} ref={fileRef1} hidden></Form.Control>
-                                <button className="botoncito1 button" variant="outline-success" onClick={(e) => {
+                                <Button className="margen11" variant="outline-success" onClick={(e) => {
                                     e.preventDefault()
                                     fileRef1.current.click()
                                 
                                 }}>
                                     Custom File Input Button
-                                </button>
+                                </Button><Button variant="outline-success" type="submit" className="botoncito1 button" >Enviar Intento</Button>
                             </div>
                         </> : <>
                             <div className='container'>
@@ -202,7 +204,7 @@ const NuevoIntento = (props) => {
                         </>}
 
 
-                        <button variant="outline-success" type="submit" className="botoncito1 button" >Enviar Intento</button>
+                        
 
                     </Form>
 
@@ -215,7 +217,7 @@ const NuevoIntento = (props) => {
 
 
 
-
+            </Container>
 
         </>
     );
