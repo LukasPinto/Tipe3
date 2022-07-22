@@ -50,7 +50,7 @@ const PuntosSolicitud = (props) => {
                 <tr>
 
                   <th>Puntos</th>
-                  <th>Descripcion del punto</th>
+                  <th>Titulo</th>
                   <th>Asignar encargado</th>
                   <th>Eliminar punto</th>
                   <th>Editar punto</th>

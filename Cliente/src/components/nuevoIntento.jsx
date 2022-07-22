@@ -10,6 +10,8 @@ import ListadoPlantilla from '../services/listadoPlantilla.service';
 import DescargarPlantilla from '../services/descargarPlantilla.service';
 import { useLocalStorage } from './custom/useLocalStorage';
 import FileDownload from 'js-file-download'
+import CrearIntento from '../services/crearIntento.service';
+import SubirArchivoIntento from '../services/subirArchivoIntento.service';
 const NuevoIntento = (props) => {
     const [archivos, setArchivos] = useState([]);
     const [drag, setDrag] = useState(null)
@@ -18,12 +20,12 @@ const NuevoIntento = (props) => {
     const [datosSubida,setDatosSubida] = useState()
     const [punto,setPunto] = useState([])
     const [plantillas,setPlantilla] = useState([])
-    const files = new FormData()
+    
     const [aux,setAux] = useLocalStorage('plantilla','')
     const subirArchivos = async e => {
         console.log(e.target.files)
         await setArchivos([...archivos, ...e.target.files])
-        await console.log(archivos)
+    
 
     }
 
@@ -74,39 +76,39 @@ const NuevoIntento = (props) => {
       //await console.log(plantillas) 
     },[])
     const handleSubmit = async (e) => {
-        let id_punto = ''
+        let files = new FormData()
+        let id_intento = ''
         e.preventDefault()
+
         
         for (let clave in datosSubida){
-            //console.log({[clave]:datosSubida[clave]})
+            console.log(clave,{[clave]:datosSubida[clave]})
             files.append([clave],datosSubida[clave])
-         
+
         }
         
         for (let file of archivos){
             files.append( 'files',file )
+      
         }
         const ahora = new Date()
         const data = {
-            id_solicitud: localStorage.getItem('solicitud').replace(/['"]+/g, ''),
+            id_punto: localStorage.getItem('punto').replace(/['"]+/g, ''),
             ...datosSubida,
-            inicio:`${ahora.getFullYear()}/${ahora.getMonth()+1}/${ahora.getDate()}`
-
         }
-    
-       await CrearPunto(data).then((response)=>{
-        console.log(response)
+       await CrearIntento(data).then((response)=>{
         if(response.data){
             
-
-            id_punto = response.data['LAST_INSERT_ID']
+            id_intento = response.data['LAST_INSERT_ID']
+            alert('Intento creado Exitosamente')
         }
        }).catch(()=>{
         alert("error")
        })
-       await SubirPlantilla(files,id_punto)
+       console.log(files.get('files'))
+       await SubirArchivoIntento(files,id_intento)
        .then((Response) => {
-           console.log(Response)
+
            if (Response.data) {
                console.log(Response)
            }
@@ -135,7 +137,7 @@ const NuevoIntento = (props) => {
             {console.log(datosSubida)}
             <div className="container" onDragOverCapture={dragStarted} >
                 <div >
-                    <p class="cajita1">Crear punto</p>
+                    <p class="cajita1">Nuevo Intento</p>
                 </div>
                 <div className='caja2'>
                     <Form onSubmit={handleSubmit}>
@@ -200,7 +202,7 @@ const NuevoIntento = (props) => {
                         </>}
 
 
-                        <button variant="outline-success" type="submit" className="botoncito1 button" >Crear punto</button>
+                        <button variant="outline-success" type="submit" className="botoncito1 button" >Enviar Intento</button>
 
                     </Form>
 

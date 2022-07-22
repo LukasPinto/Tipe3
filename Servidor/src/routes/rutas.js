@@ -271,7 +271,7 @@ router.post("/direccion/usuario",verify,(req,respuesta)=>{
 
 /*peticion para crear una plantilla*/
 router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,respuesta)=>{
-   
+   console.log(req.files)
     const id_punto = req.params.id_punto
     let ruta = path.join(__dirname,'../archivos');
     let consulta = 'INSERT INTO plantilla_punto (id_punto_solicitud,dir_archivo) values '
@@ -302,55 +302,55 @@ router.post('/upload/plantilla/:id_punto',upload.array('files'),verify,(req,resp
         }
     }) 
 })
-
-router.post('/crear/intento',verify,(req,respuesta)=>{
-    console.log(req.body)
-    const {id_solicitud,titulo,descripcion,inicio} = req.body;
-    conn.query('SET FOREIGN_KEY_CHECKS = 0;INSERT INTO puntos (id_solicitud,titulo,descripcion,inicio) VALUES (?,?,?,?);select LAST_INSERT_ID();',[id_solicitud,titulo,descripcion,inicio],(err,res)=>{
-        if(!err){
-        
-          aux ={LAST_INSERT_ID:res[2][0]['LAST_INSERT_ID()']}
-            respuesta.send(aux)
-        }
-        else{
-            respuesta.send(err)
-        }
-
-    })
-
-
-
-})
-//peticion para crear un intento , se puede reutilizar parte del codigo para solamente un intento y su archivo
-router.post('/upload/intento',upload.array('files'),verify,(req,respuesta)=>{
-    const[id_punto,fecha_intento,descripcion,respuesta_intento] = [req.body.id_punto,req.body.fecha_intento,req.body.descripcion,req.body.respuesta]
+//primero se llama el crear intento, que en verdad es crear punto
+router.post('/upload/archivo/:id_intento',upload.array('files'),verify,(req,respuesta)=>{
+    console.log(req)
+    const id_intento= req.params.id_intento
     let ruta = path.join(__dirname,'../archivos');
     let consulta = 'INSERT INTO archivo_intento (id_intento_solicitud,dir_archivo_intento) values '
     let cont = 0
+    
     for (file of req.files){
         cont++;
-        //console.log(file)
-        if(req.files.length == cont){
-            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`
+        console.log(file)
+        if(req.files.length == cont ){
+            consulta = consulta+`(${id_intento},"${file.filename.toString()}")`
         }
         else{
-            consulta = consulta+`(@id_ultimo_empl,"${path.join(ruta,`/${file.filename}`).toString()}")`+","
+            consulta = consulta+`(${id_intento},"${file.filename.toString()}")`+","
         }
         
         
     }
 
-    conn.query(`INSERT INTO intento (id_punto,fecha_intento,descripcion,respuesta) VALUES (?,?,?,?); select LAST_INSERT_ID() INTO @id_ultimo_empl;${consulta}`, [id_punto,fecha_intento,descripcion,respuesta_intento],(err,res) =>{
+    conn.query(`SET FOREIGN_KEY_CHECKS = 0;${consulta}`,(err,res) =>{
         
         if(!err){
             respuesta.send(res)
-            //respuesta.download(`${path.join(__dirname,'../../archivos/Problema 1 - Parte 2-1653097581961.pdf')}`)  
         }
         else{
             console.log(err)
             respuesta.json("error")
         }
     }) 
+
+
+})
+
+
+router.put('/usuario/nuevo/intento',verify,(req,respuesta)=>{
+    const [id_punto,descripcion]=[req.body.id_punto,req.body.descripcion]
+    console.log(req.body)
+    conn.query(`SET FOREIGN_KEY_CHECKS = 0;insert into intento ( id_punto, fecha_intento,respuesta) values (${id_punto},CURRENT_TIMESTAMP,'');select LAST_INSERT_ID()`,(err,res)=>{
+        if(!err){
+            aux ={LAST_INSERT_ID:res[2][0]['LAST_INSERT_ID()']}
+            respuesta.send(aux)
+
+        }
+        else{
+            respuesta.send(err)
+        }
+    })
 })
 
 router.get('/solicitud/usuario/:id_empl_municipal',verify,(req,respuesta)=>{
@@ -417,16 +417,5 @@ router.get('/plantilla/:id_punto',verify,(req,respuesta)=>{
 
 })
 
-router.put('/usuario/nuevo/intento',verify,(req,respuesta)=>{
-    const [id_punto,descripcion,respuestaIntento ]=[req.body.id_punto,req.body.descripcion,req.body.respuesta]
 
-    conn.query(`insert into intento ( id_punto, fecha_intento,descripcion,respuesta) values (${id_punto},CURRENT_TIMESTAMP,${descripcion},${respuestaIntento})`,(err,res)=>{
-        if(!err){
-            respuesta.send(res)
-        }
-        else{
-            respuesta.send(err)
-        }
-    })
-})
 module.exports = router;
